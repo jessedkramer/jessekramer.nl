@@ -22,7 +22,7 @@ export default async function Footer() {
             return (
               <>
                 {footer.tagline.slice(0, highlightIndex)}
-                <span>{footer.taglineHighlight}</span>
+                <span className="footer-tagline-highlight">{footer.taglineHighlight}</span>
                 {footer.tagline.slice(
                   highlightIndex + footer.taglineHighlight.length,
                 )}

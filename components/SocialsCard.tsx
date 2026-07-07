@@ -22,8 +22,8 @@ const iconMap = {
 export default async function SocialsCard() {
   const locale = (await getLocale()) as AppLocale;
   const socials = getSocialsCardContent(locale);
-  const listLinks = socials.links.filter(
-    (link) => link.showInList !== false || link.id === "linkedin",
+  const iconLinks = socials.links.filter(
+    (link) => link.showInList !== false && link.id !== "linkedin",
   );
   const linkedinLink = socials.links.find((link) => link.id === "linkedin");
 
@@ -37,22 +37,18 @@ export default async function SocialsCard() {
       </h2>
       <div className="socials-layout">
         <div className="social-list" aria-label={socials.socialListLabel}>
-          {listLinks.map((link) => {
+          {iconLinks.map((link) => {
             const Icon = iconMap[link.icon as keyof typeof iconMap] ?? IconMail;
 
             return (
               <a
                 key={link.id}
-                className={`social-row${link.id === "linkedin" ? " social-row--linkedin" : ""}`}
+                className="social-row"
                 href={link.href}
                 rel={link.id === "email" ? undefined : "noreferrer"}
                 target={link.id === "email" ? undefined : "_blank"}
-                aria-label={link.id === "linkedin" ? socials.viewLinkedInAria : undefined}
               >
-                <span
-                  className={`social-icon${link.id === "linkedin" ? " social-icon--linkedin" : ""}`}
-                  aria-hidden="true"
-                >
+                <span className="social-icon" aria-hidden="true">
                   <Icon className="svg-icon" />
                 </span>
                 <span className="social-label">{link.label}</span>
@@ -60,7 +56,24 @@ export default async function SocialsCard() {
               </a>
             );
           })}
-          <span className="social-separator" aria-hidden="true" />
+          {linkedinLink ? (
+            <>
+              <span className="social-separator" aria-hidden="true" />
+              <a
+                className="social-row social-row--linkedin"
+                href={linkedinLink.href}
+                rel="noreferrer"
+                target="_blank"
+                aria-label={socials.viewLinkedInAria}
+              >
+                <span className="social-icon social-icon--linkedin" aria-hidden="true">
+                  <IconLinkedIn className="svg-icon" />
+                </span>
+                <span className="social-label">{linkedinLink.label}</span>
+                <IconArrowRight className="svg-icon svg-icon-sm social-arrow" />
+              </a>
+            </>
+          ) : null}
         </div>
         <div className="linkedin-block" aria-label={socials.linkedinBlockLabel}>
           <div className="linkedin-logo" aria-hidden="true">
