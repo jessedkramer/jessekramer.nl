@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
@@ -55,6 +56,11 @@ export async function JournalArticlePage({ locale, slug }: JournalArticlePagePro
 
   return (
     <div className="home journal-page">
+      <Script
+        src="https://platform.x.com/widgets.js"
+        strategy="afterInteractive"
+        charSet="utf-8"
+      />
       <WorldBackground />
       <SiteHeader activeNav="journal" />
       <div className="home-stage home-stage--content">
