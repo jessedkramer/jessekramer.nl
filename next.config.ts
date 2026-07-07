@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
     "/[locale]/journal": ["./content/journal/**/*"],
     "/[locale]/journal/[slug]": ["./content/journal/**/*"],
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/", destination: "/nl" },
+        { source: "/about", destination: "/nl/about" },
+        { source: "/journal", destination: "/nl/journal" },
+        { source: "/journal/:slug", destination: "/nl/journal/:slug" },
+      ],
+    };
+  },
   async redirects() {
     return [
       {
