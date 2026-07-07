@@ -1739,6 +1739,9 @@ button:focus-visible {
     min-height: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: clamp(12px, 1.6vh, 18px);
+    padding-block: clamp(4px, 1vh, 14px);
   }
 
   .home:not(.journal-page):not(.about-page) .home-stage .currently-bar {
@@ -1746,12 +1749,13 @@ button:focus-visible {
   }
 
   .home:not(.journal-page):not(.about-page) .home-stage .page-shell {
-    flex: 1;
+    flex: 0 1 auto;
     min-height: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: clamp(6px, 1.2vh, 16px);
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .home:not(.journal-page):not(.about-page) .home-stage .footer {
@@ -1795,7 +1799,20 @@ button:focus-visible {
   }
 
   .home:not(.journal-page):not(.about-page) .home-stage {
-    gap: clamp(8px, 1vh, 12px);
+    justify-content: center;
+    gap: clamp(10px, 1.3vh, 16px);
+  }
+
+  .home:not(.journal-page):not(.about-page) .home-stage .page-shell {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard {
+    margin-inline: auto;
   }
 
   .home-stage .currently-bar,
@@ -1940,6 +1957,51 @@ button:focus-visible {
       0 0 22px var(--glass-glow);
   }
 
+  /* Unified dashboard card surface */
+  .home:not(.journal-page):not(.about-page) .dashboard .about-card,
+  .home:not(.journal-page):not(.about-page) .dashboard .socials-card,
+  .home:not(.journal-page):not(.about-page) .dashboard .journal-card,
+  .home:not(.journal-page):not(.about-page) .dashboard .municipality-card {
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(0, 229, 255, .16);
+    border-top-color: rgba(255, 46, 184, .2);
+    background: rgba(8, 12, 30, .66);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .11),
+      inset 0 -1px 0 rgba(0, 0, 0, .14),
+      0 12px 32px rgba(0, 0, 0, .22),
+      0 0 22px rgba(255, 0, 127, .07);
+    backdrop-filter: blur(24px) saturate(155%) brightness(.94);
+    -webkit-backdrop-filter: blur(24px) saturate(155%) brightness(.94);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .about-card::before,
+  .home:not(.journal-page):not(.about-page) .dashboard .socials-card::before,
+  .home:not(.journal-page):not(.about-page) .dashboard .journal-card::before,
+  .home:not(.journal-page):not(.about-page) .dashboard .municipality-card::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 229, 255, .05) 0%,
+        rgba(255, 255, 255, .03) 6%,
+        transparent 18%
+      ),
+      linear-gradient(
+        135deg,
+        rgba(255, 0, 127, .04) 0%,
+        transparent 14%
+      );
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .about-card::after,
+  .home:not(.journal-page):not(.about-page) .dashboard .socials-card::after,
+  .home:not(.journal-page):not(.about-page) .dashboard .journal-card::after,
+  .home:not(.journal-page):not(.about-page) .dashboard .municipality-card::after {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+  }
+
   .dashboard {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.84fr);
@@ -1991,7 +2053,6 @@ button:focus-visible {
   .dashboard .about-card > h2,
   .dashboard .socials-card > h2,
   .dashboard .journal-card__header {
-    min-height: 2.35rem;
     align-items: flex-start;
   }
 
@@ -2021,6 +2082,129 @@ button:focus-visible {
   .social-list,
   .linkedin-block {
     min-width: 0;
+  }
+
+  /* Socials widget: robust desktop layout */
+  .home:not(.journal-page):not(.about-page) .dashboard .socials-card > h2 {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 7px;
+    line-height: 1.25;
+    min-height: 0;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .socials-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: stretch;
+    margin-top: 10px;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .socials-layout::after {
+    display: none;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .social-list {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+    padding-right: 0;
+    min-width: 0;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .social-row {
+    grid-template-columns: 26px minmax(0, 1fr) 12px;
+    min-width: 0;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .social-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .linkedin-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(6px, 0.8vh, 10px);
+    padding: 4px 4px 4px 14px;
+    border-left: 1px solid rgba(255, 255, 255, .08);
+    min-width: 0;
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .linkedin-logo {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .linkedin-block h3 {
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.25;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .linkedin-block .small-button {
+    width: 100%;
+    max-width: 11.5rem;
+    margin-top: 0;
+    white-space: normal;
+    line-height: 1.25;
+    text-align: center;
+    hyphens: auto;
+  }
+
+  /* Dashboard widgets: text-length resilience */
+  .home:not(.journal-page):not(.about-page) .dashboard .about-card > h2 {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 7px;
+    min-height: 0;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .about-copy p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .journal-card__header {
+    min-height: 0;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .journal-card__all-link {
+    max-width: 42%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .municipality-card__copy {
+    min-width: 0;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .municipality-card h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .home:not(.journal-page):not(.about-page) .dashboard .municipality-card p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .journal-card {
