@@ -30,7 +30,7 @@
     "soundtrackLabel": "Current soundtrack",
     "trackTitle": "Purple Skyline",
     "projectLabel": "Current focus",
-    "projectValue": "Watching TV",
+    "projectValue": "Watching Suits on Netflix",
     "playMusic": "Play Purple Skyline soundtrack",
     "pauseMusic": "Pause Purple Skyline soundtrack"
   },
@@ -99,7 +99,7 @@
     "allCategories": "All",
     "resultsCount": "{count, plural, one {# article} other {# articles}}",
     "noResultsTitle": "No articles match your filters.",
-    "noResultsHint": "Try another search term or choose a different category.",
+    "noResultsHint": "Try another search term or choose another category.",
     "paginationLabel": "Journal pagination",
     "previousPage": "Previous",
     "nextPage": "Next"
