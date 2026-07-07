@@ -99,7 +99,7 @@ export default function CurrentlyBar({ compact = false }: CurrentlyBarProps) {
 
         <Link
           className="currently-pill currently-pill--static"
-          href="/journal/jessekramer-nl-bouwen"
+          href="/"
         >
           <span className="currently-icon" aria-hidden="true">
             ✨
