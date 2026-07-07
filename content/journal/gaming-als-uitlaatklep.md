@@ -5,7 +5,7 @@ date: 2026-04-08
 category: gaming
 excerpt: Over verkennen, rust vinden en toch iets leren terwijl je speelt.
 excerptEn: On exploring, finding calm, and still learning while you play.
-published: true
+published: false
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
