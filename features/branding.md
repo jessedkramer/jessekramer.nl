@@ -16,3 +16,5 @@
 
 ## AI edits
 Replace logo in `public/images/` and update branding JSON. No component changes needed.
+
+**Footer slogan:** always rendered in English (`Finding beauty in the digital world.`), regardless of locale. Dutch tagline in `branding.json` is used elsewhere if needed in future.

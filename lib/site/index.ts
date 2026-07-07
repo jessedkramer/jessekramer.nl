@@ -186,13 +186,14 @@ export function getCurrentlyBarContent(locale: AppLocale) {
 
 export function getFooterContentForLocale(locale: AppLocale) {
   const footer = getFooterContent();
-  const branding = getBrandingForLocale(locale);
+  const branding = getBrandingContent();
 
   return {
     name: branding.name,
     betaLabel: branding.betaLabel,
-    tagline: branding.tagline,
-    taglineHighlight: branding.taglineHighlight,
+    // Footer slogan is always English, even in Dutch mode.
+    tagline: branding.tagline.en,
+    taglineHighlight: branding.taglineHighlight.en,
     copyright: pickLocalized(footer.copyright, locale),
   };
 }

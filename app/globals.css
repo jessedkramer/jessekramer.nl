@@ -11,7 +11,7 @@
   --deep: #080818;
   --header-h: clamp(40px, 4.8vh, 52px);
   --footer-h: clamp(38px, 4.8vh, 46px);
-  --dash-gap: clamp(10px, 1.1vw, 14px);
+  --dash-gap: clamp(12px, 1.2vw, 16px);
   --shell-inset: clamp(52px, 7vw, 128px);
   --dash-max: 1000px;
   --content-max: 760px;
@@ -618,6 +618,13 @@ body {
   min-height: 0;
 }
 
+.dashboard .about-card,
+.dashboard .socials-card,
+.dashboard .journal-card,
+.dashboard .municipality-card {
+  padding: 14px 16px;
+}
+
 .dashboard-col {
   display: contents;
 }
@@ -710,10 +717,9 @@ h2 {
 
 .about-card {
   min-height: 0;
-  padding: 9px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
 }
 
 .about-card h2 {
@@ -831,7 +837,6 @@ h2 {
 
 .socials-card {
   min-height: 0;
-  padding: 10px 14px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -846,7 +851,7 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  margin-top: 6px;
+  margin-top: 10px;
   align-items: start;
   align-content: start;
 }
@@ -960,11 +965,11 @@ h2 {
 /* ── Journal card ──────────────────────────────────────────────── */
 
 .journal-card {
-  padding: 12px 14px;
   display: flex;
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
+  gap: 2px;
 }
 
 .journal-card__header {
@@ -998,11 +1003,11 @@ h2 {
 
 .journal-list {
   list-style: none;
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
   flex: 1;
   min-height: 0;
 }
@@ -1017,9 +1022,9 @@ h2 {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto;
-  gap: 0 10px;
+  gap: 0 8px;
   align-items: center;
-  padding: 10px 2px 10px 0;
+  padding: 7px 2px 7px 0;
   color: inherit;
   border-radius: 0;
   border: none;
@@ -1030,10 +1035,14 @@ h2 {
     transform var(--motion-gentle) var(--ease-in-out);
 }
 
+.journal-card .journal-item-excerpt {
+  display: none;
+}
+
 .journal-list > li + li .journal-item {
-  border-top: 1px solid rgba(255, 255, 255, .07);
-  padding-top: 12px;
-  margin-top: 2px;
+  border-top: 1px solid rgba(255, 255, 255, .05);
+  padding-top: 8px;
+  margin-top: 0;
 }
 
 .journal-item-content {
@@ -1149,11 +1158,10 @@ h2 {
 /* ── Municipality card ─────────────────────────────────────────── */
 
 .municipality-card {
-  padding: 8px 11px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   overflow: hidden;
 }
 
@@ -1932,16 +1940,16 @@ button:focus-visible {
   }
 
   .dashboard {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(250px, 0.66fr);
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr) minmax(0, 0.68fr);
     grid-template-rows: auto;
     align-items: start;
-    gap: 14px;
+    gap: 16px;
   }
 
   .dashboard-col--left {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     grid-column: 1;
     grid-row: 1;
     align-self: start;
@@ -1968,19 +1976,17 @@ button:focus-visible {
 
   .about-card {
     align-self: start;
-    padding: 12px 14px;
-    gap: 8px;
+    gap: 10px;
   }
 
   .socials-card {
     display: flex;
     flex-direction: column;
     align-self: start;
-    padding: 12px 14px;
   }
 
   .socials-layout {
-    margin-top: 8px;
+    margin-top: 10px;
     flex: none;
     min-height: 0;
     align-items: start;
@@ -1990,11 +1996,7 @@ button:focus-visible {
     display: flex;
     flex-direction: column;
     align-self: start;
-    padding: 12px 14px;
-    max-height: min(
-      calc(100dvh - var(--header-h) - var(--footer-h) - clamp(100px, 15vh, 140px)),
-      420px
-    );
+    max-height: none;
     overflow: hidden;
     min-height: 0;
   }
@@ -2002,17 +2004,16 @@ button:focus-visible {
   .municipality-card {
     align-self: start;
     width: 100%;
-    padding: 10px 12px;
   }
 
   .journal-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-top: 6px;
-    flex: 1;
+    gap: 2px;
+    margin-top: 8px;
+    flex: 0 1 auto;
     min-height: 0;
-    overflow-y: auto;
+    overflow: visible;
   }
 
   .journal-list > li {
@@ -2022,19 +2023,7 @@ button:focus-visible {
 
   .journal-item {
     min-height: 0;
-    padding: 9px 2px 9px 0;
-  }
-
-  .journal-item-excerpt {
-    -webkit-line-clamp: 1;
-  }
-
-  .journal-card__subtitle {
-    font-size: clamp(.56rem, .6vw, .64rem);
-  }
-
-  .about-card {
-    gap: 8px;
+    padding: 7px 2px 7px 0;
   }
 
   .about-button {
@@ -2094,7 +2083,11 @@ button:focus-visible {
   }
 
   .journal-item-title {
-    font-size: clamp(.72rem, .76vw, .8rem);
+    font-size: clamp(.7rem, .74vw, .8rem);
+  }
+
+  .journal-card__subtitle {
+    font-size: clamp(.56rem, .6vw, .64rem);
   }
 
   .journal-item-excerpt {
@@ -2422,7 +2415,6 @@ button:focus-visible {
   /* ── Tablet dashboard ── */
 
   .about-card {
-    padding: clamp(14px, 2.2vw, 18px) clamp(16px, 2.4vw, 20px);
     gap: 10px;
   }
 
@@ -2468,6 +2460,7 @@ button:focus-visible {
   .dashboard {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
+    gap: 16px;
   }
 
   .about-card {
@@ -2864,7 +2857,7 @@ button:focus-visible {
   .dashboard {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 
   .about-card {
@@ -2924,7 +2917,7 @@ button:focus-visible {
   /* ── Mobile socials: icon row with LinkedIn ── */
 
   .socials-card {
-    padding-bottom: 10px;
+    padding-bottom: 12px;
   }
 
   .socials-layout {
