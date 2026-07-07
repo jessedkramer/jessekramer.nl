@@ -8,21 +8,16 @@ import type { AppLocale } from "@/i18n/config";
 import { buildJournalCategoryLabels } from "@/lib/journal-categories";
 import { getJournalListEntries } from "@/lib/journal";
 
-export const runtime = "nodejs";
-
 type JournalIndexPageProps = {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<{
+  locale: AppLocale;
+  searchParams: {
     q?: string;
     category?: string;
     page?: string;
-  }>;
+  };
 };
 
-export async function generateMetadata({
-  params,
-}: JournalIndexPageProps): Promise<Metadata> {
-  const { locale } = await params;
+export async function journalIndexMetadata(locale: AppLocale): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
@@ -31,17 +26,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function JournalIndexPage({
-  params,
+export async function JournalIndexPage({
+  locale,
   searchParams,
 }: JournalIndexPageProps) {
-  const { locale } = await params;
-  const { q = "", category = "", page = "1" } = await searchParams;
+  const { q = "", category = "", page = "1" } = searchParams;
   setRequestLocale(locale);
   const t = await getTranslations("journalPage");
   const tCategories = await getTranslations("journalCategories");
   const categoryLabels = buildJournalCategoryLabels((key) => tCategories(key));
-  const posts = getJournalListEntries(locale as AppLocale, categoryLabels);
+  const posts = getJournalListEntries(locale, categoryLabels);
   const parsedPage = Number.parseInt(page, 10);
 
   return (

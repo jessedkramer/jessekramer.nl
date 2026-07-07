@@ -5,34 +5,25 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
-import { routing } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/config";
 import { formatJournalDate } from "@/lib/format";
 import { localizeJournalPost } from "@/lib/journal-display";
 import { buildJournalCategoryLabels } from "@/lib/journal-categories";
 import {
   getJournalPost,
-  getJournalSlugsForLocale,
   isJournalPostVisibleInLocale,
 } from "@/lib/journal";
 import { renderMarkdown } from "@/lib/markdown";
 
-export const runtime = "nodejs";
-
 type JournalArticlePageProps = {
-  params: Promise<{ locale: string; slug: string }>;
+  locale: AppLocale;
+  slug: string;
 };
 
-export async function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    getJournalSlugsForLocale(locale).map((slug) => ({ locale, slug })),
-  );
-}
-
-export async function generateMetadata({
-  params,
+export async function journalArticleMetadata({
+  locale,
+  slug,
 }: JournalArticlePageProps): Promise<Metadata> {
-  const { locale, slug } = await params;
   const post = getJournalPost(slug);
   const t = await getTranslations({ locale, namespace: "metadata" });
 
@@ -48,20 +39,17 @@ export async function generateMetadata({
   };
 }
 
-export default async function JournalArticlePage({
-  params,
-}: JournalArticlePageProps) {
-  const { locale, slug } = await params;
+export async function JournalArticlePage({ locale, slug }: JournalArticlePageProps) {
   setRequestLocale(locale);
   const t = await getTranslations("journalPage");
   const tCategories = await getTranslations("journalCategories");
   const post = getJournalPost(slug);
 
-  if (!post || !isJournalPostVisibleInLocale(post, locale as AppLocale)) {
+  if (!post || !isJournalPostVisibleInLocale(post, locale)) {
     notFound();
   }
 
-  const localized = localizeJournalPost(post, locale as AppLocale);
+  const localized = localizeJournalPost(post, locale);
   const categoryLabels = buildJournalCategoryLabels((key) => tCategories(key));
 
   return (

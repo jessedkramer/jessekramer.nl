@@ -8,13 +8,9 @@ import SiteHeader from "@/components/SiteHeader";
 import SocialsCard from "@/components/SocialsCard";
 import WorldBackground from "@/components/WorldBackground";
 import XCard from "@/components/XCard";
+import type { AppLocale } from "@/i18n/config";
 
-type HomePageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params;
+export async function HomePage({ locale }: { locale: AppLocale }) {
   setRequestLocale(locale);
   const t = await getTranslations("home");
 

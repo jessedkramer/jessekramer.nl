@@ -5,22 +5,25 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
-    "/[locale]": ["./content/journal/**/*"],
-    "/[locale]/journal": ["./content/journal/**/*"],
-    "/[locale]/journal/[slug]": ["./content/journal/**/*"],
-  },
-  async rewrites() {
-    return {
-      beforeFiles: [
-        { source: "/", destination: "/nl" },
-        { source: "/about", destination: "/nl/about" },
-        { source: "/journal", destination: "/nl/journal" },
-        { source: "/journal/:slug", destination: "/nl/journal/:slug" },
-      ],
-    };
+    "/": ["./content/journal/**/*"],
+    "/journal": ["./content/journal/**/*"],
+    "/journal/[slug]": ["./content/journal/**/*"],
+    "/en": ["./content/journal/**/*"],
+    "/en/journal": ["./content/journal/**/*"],
+    "/en/journal/[slug]": ["./content/journal/**/*"],
   },
   async redirects() {
     return [
+      {
+        source: "/nl",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/nl/:path*",
+        destination: "/:path*",
+        permanent: true,
+      },
       {
         source: "/:path*",
         has: [{ type: "host", value: "jessekramer-nl.vercel.app" }],

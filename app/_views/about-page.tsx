@@ -3,15 +3,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Footer from "@/components/Footer";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
+import type { AppLocale } from "@/i18n/config";
 
-type AboutPageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata({
-  params,
-}: AboutPageProps): Promise<Metadata> {
-  const { locale } = await params;
+export async function aboutMetadata(locale: AppLocale): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
@@ -20,8 +14,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function AboutPage({ params }: AboutPageProps) {
-  const { locale } = await params;
+export async function AboutPage({ locale }: { locale: AppLocale }) {
   setRequestLocale(locale);
   const t = await getTranslations("aboutPage");
 
