@@ -41,7 +41,7 @@ export async function JournalIndexPage({
   const parsedPage = Number.parseInt(page, 10);
 
   return (
-    <div className="home journal-page">
+    <div className="home journal-page journal-index-page">
       <WorldBackground />
       <SiteHeader activeNav="journal" />
       <div className="home-stage home-stage--content">

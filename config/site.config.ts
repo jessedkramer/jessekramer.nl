@@ -3,7 +3,7 @@ export const siteConfig = {
   locales: ["nl", "en"] as const,
   defaultLocale: "nl" as const,
   journal: {
-    postsPerPage: 10,
+    postsPerPage: 4,
   },
   audio: {
     mobileMaxWidthPx: 640,

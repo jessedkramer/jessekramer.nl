@@ -55,7 +55,7 @@ export async function JournalArticlePage({ locale, slug }: JournalArticlePagePro
   const categoryLabels = buildJournalCategoryLabels(locale);
 
   return (
-    <div className="home journal-page">
+    <div className="home journal-page journal-article-page">
       <Script
         src="https://platform.x.com/widgets.js"
         strategy="afterInteractive"
