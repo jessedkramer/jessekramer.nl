@@ -3,7 +3,7 @@
     "siteTitle": "Jesse Kramer",
     "siteDescription": "Schoonheid vinden in de digitale wereld.",
     "aboutTitle": "Over mij · Jesse Kramer",
-    "aboutDescription": "19-jarige IT-student uit Nederland met een passie voor technologie, software en digitaal design.",
+    "aboutDescription": "Hoi, ik ben Jesse Kramer. Binnenkort vertel ik hier meer over mezelf.",
     "journalTitle": "Journal · Jesse Kramer",
     "journalFallbackTitle": "Journal"
   },
@@ -39,19 +39,19 @@
   },
   "aboutCard": {
     "title": "Over mij",
-    "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "paragraph2": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "paragraph1": "Hoi, ik ben Jesse Kramer.",
+    "paragraph2": "Ik zal hier binnenkort meer neerzetten.",
     "readMore": "Lees meer"
   },
   "aboutPage": {
     "eyebrow": "Over mij",
     "title": "Over mij",
-    "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "paragraph2": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    "paragraph3": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus nulla gravida orci a odio.",
-    "paragraph4": "Nullam varius turpis et commodo pharetra est eros bibendum elit nec lorem ipsum nec lorem. Proin gravida nibh vel velit auctor aliquet aenean sollicitudin lorem quis bibendum auctor.",
-    "paragraph5": "Nisi elit consequat ipsum nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris morbi accumsan ipsum velit.",
-    "paragraph6": "Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit class aptent taciti sociosqu ad litora."
+    "paragraph1": "Hoi, ik ben Jesse Kramer.",
+    "paragraph2": "Ik zal hier binnenkort meer neerzetten.",
+    "paragraph3": "",
+    "paragraph4": "",
+    "paragraph5": "",
+    "paragraph6": ""
   },
   "socialsCard": {
     "title": "Socials & professioneel profiel",
