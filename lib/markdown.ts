@@ -13,6 +13,18 @@ function formatInline(text: string): string {
     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
+function renderTweet(id: string): string {
+  const tweetUrl = `https://x.com/i/status/${id}`;
+
+  return [
+    '<div class="journal-tweet">',
+    '<blockquote class="twitter-tweet" data-theme="dark">',
+    `<a href="${tweetUrl}">View this post on X</a>`,
+    "</blockquote>",
+    "</div>",
+  ].join("");
+}
+
 /** Lightweight Markdown renderer for journal articles. */
 export function renderMarkdown(markdown: string): string {
   const lines = markdown.trim().split("\n");
@@ -30,6 +42,24 @@ export function renderMarkdown(markdown: string): string {
 
     if (!trimmed) {
       flushParagraph();
+      continue;
+    }
+
+    const tweetMatch = trimmed.match(/^\{\{tweet:(\d+)\}\}$/);
+    if (tweetMatch) {
+      flushParagraph();
+      html.push(renderTweet(tweetMatch[1]));
+      continue;
+    }
+
+    const imageMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (imageMatch) {
+      flushParagraph();
+      const alt = escapeHtml(imageMatch[1]);
+      const src = escapeHtml(imageMatch[2]);
+      html.push(
+        `<figure class="journal-image"><img src="${src}" alt="${alt}" loading="lazy" />${alt ? `<figcaption>${alt}</figcaption>` : ""}</figure>`,
+      );
       continue;
     }
 
