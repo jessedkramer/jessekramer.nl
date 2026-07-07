@@ -8,8 +8,8 @@ excerptEn: Short stops, long lines, and details you only write down while on the
 published: true
 ---
 
-Reizen leert je vooral kijken: licht, ritme en stilte tussen stations door.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 ---en---
 
-Travel mostly teaches you to look: light, rhythm, and silence between stops.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

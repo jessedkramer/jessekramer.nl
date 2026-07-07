@@ -8,16 +8,16 @@ excerptEn: On exploring, finding calm, and still learning while you play.
 published: true
 ---
 
-Gaming is voor mij geen escapisme zonder morele waarde — het is soms juist de plek waar ik nieuwsgierig blijf.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Verkennen zonder agenda
+## Duis aute irure
 
-Open werelden leren je kijken: ritme, ruimte, en wat er gebeurt als je geen route kiest.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ---en---
 
-Gaming is not mindless escapism for me — it is often where I stay curious.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Exploring without an agenda
+## Duis aute irure
 
-Open worlds teach you to look: rhythm, space, and what happens when you choose no route at all.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

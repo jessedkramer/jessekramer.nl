@@ -8,16 +8,16 @@ excerptEn: Why municipalities should publish decisions in formats citizens can a
 published: true
 ---
 
-Publieke besluiten verdienen publieke formaten — geen PDF-scans die drie kliks diep verstopt zitten.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Wat goed werkt
+## Duis aute irure
 
-Gestructureerde data, duidelijke metadata en pagina's die nog steeds menselijk leesbaar zijn.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ---en---
 
-Public decisions deserve public formats — not PDF scans buried three clicks deep.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## What works well
+## Duis aute irure
 
-Structured data, clear metadata, and pages that still feel human to read.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

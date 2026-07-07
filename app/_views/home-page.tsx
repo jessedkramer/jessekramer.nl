@@ -7,7 +7,6 @@ import MunicipalityCard from "@/components/MunicipalityCard";
 import SiteHeader from "@/components/SiteHeader";
 import SocialsCard from "@/components/SocialsCard";
 import WorldBackground from "@/components/WorldBackground";
-import XCard from "@/components/XCard";
 import type { AppLocale } from "@/i18n/config";
 
 export async function HomePage({ locale }: { locale: AppLocale }) {
@@ -18,17 +17,14 @@ export async function HomePage({ locale }: { locale: AppLocale }) {
     <div className="home">
       <WorldBackground />
       <SiteHeader />
-      <CurrentlyBar />
       <div className="home-stage">
+        <CurrentlyBar />
         <main className="page-shell">
           <section className="dashboard" aria-label={t("dashboardLabel")}>
             <AboutCard />
             <SocialsCard />
-            <aside className="right-column">
-              <XCard />
-              <MunicipalityCard />
-            </aside>
             <JournalCard />
+            <MunicipalityCard />
           </section>
         </main>
         <Footer />

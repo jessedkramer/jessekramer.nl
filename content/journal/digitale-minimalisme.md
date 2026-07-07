@@ -8,8 +8,8 @@ excerptEn: Fewer widgets, clearer intent, and pages that do not shout for attent
 published: true
 ---
 
-Niet elke pagina hoeft alles te doen. Soms is één goed idee genoeg voor één goed scherm.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 ---en---
 
-Not every page needs to do everything. Sometimes one good idea is enough for one good screen.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

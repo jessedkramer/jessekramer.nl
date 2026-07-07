@@ -8,24 +8,16 @@ excerptEn: A first look at rebuilding my personal site with Next.js, glass UI, a
 published: true
 ---
 
-Dit is een voorbeeldjournalartikel om het overzicht, de homepage-widget en individuele artikelpagina's te testen.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Waarom herbouwen?
+## Duis aute irure
 
-Mijn persoonlijke website moet aanvoelen als een digitaal thuis — geen generiek template.
-
-## Wat ik nu probeer
-
-De nieuwe versie gebruikt **Next.js** met een componentgebaseerde layout, een kosmische achtergrond en doorschijnende glaswidgets.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 ---en---
 
-This is a sample journal article for testing the index, homepage widget, and article pages.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Why rebuild?
+## Duis aute irure
 
-My personal website should feel like a digital home — not a generic template.
-
-## What I am trying next
-
-The new version uses **Next.js** with a component-based layout, a cosmic background, and translucent glass widgets.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.

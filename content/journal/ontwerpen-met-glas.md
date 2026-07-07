@@ -8,16 +8,16 @@ excerptEn: Notes on blur, contrast, and keeping a cosmic background visible thro
 published: true
 ---
 
-De achtergrond is onderdeel van het verhaal. Panelen moeten zweven, niet het tafereel vervangen.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Minder chrome, meer sfeer
+## Duis aute irure
 
-Blur en contrast zijn geen decoratie — ze bepalen of de site ademt.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ---en---
 
-The background is part of the story. Panels should float, not replace the scene.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Less chrome, more atmosphere
+## Duis aute irure
 
-Blur and contrast are not decoration — they decide whether the site can breathe.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

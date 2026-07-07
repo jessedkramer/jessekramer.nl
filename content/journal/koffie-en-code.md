@@ -8,8 +8,8 @@ excerptEn: A light article for search and pagination tests on the journal index.
 published: true
 ---
 
-Niet elk journalbericht hoeft diepgaand te zijn. Soms deploy je, dicht je de laptop en is dat genoeg.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 ---en---
 
-Not every journal entry needs to be profound. Sometimes you deploy, close the laptop, and call it a win.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

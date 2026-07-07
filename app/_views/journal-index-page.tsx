@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Footer from "@/components/Footer";
+import CurrentlyBar from "@/components/CurrentlyBar";
 import JournalIndex from "@/components/JournalIndex";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
@@ -43,6 +44,7 @@ export async function JournalIndexPage({
       <WorldBackground />
       <SiteHeader activeNav="journal" />
       <div className="home-stage home-stage--content">
+        <CurrentlyBar compact />
         <main className="page-shell content-page">
           <section className="content-hero">
             <p className="content-eyebrow">{t("eyebrow")}</p>

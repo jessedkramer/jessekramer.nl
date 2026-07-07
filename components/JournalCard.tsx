@@ -19,42 +19,62 @@ export default async function JournalCard() {
 
   return (
     <article className="card journal-card" id="journal">
-      <div className="section-top">
-        <h2>
-          <span className="card-icon" aria-hidden="true">
-            <IconJournal className="svg-icon" />
-          </span>
-          {t("title")}
-        </h2>
-        <Link className="text-link" href="/journal">
-          {t("allArticles")} <IconArrowRight className="svg-icon svg-icon-sm" />
+      <header className="journal-card__header section-top">
+        <div className="journal-card__title-wrap">
+          <h2>
+            <span className="card-icon" aria-hidden="true">
+              <IconJournal className="svg-icon" />
+            </span>
+            {t("title")}
+          </h2>
+          {posts.length > 0 ? (
+            <p className="journal-card__subtitle">
+              {t("latestCount", { count: posts.length })}
+            </p>
+          ) : null}
+        </div>
+        <Link className="text-link journal-card__all-link" href="/journal">
+          {t("allArticles")}{" "}
+          <IconArrowRight className="svg-icon svg-icon-sm" />
         </Link>
-      </div>
+      </header>
 
       {posts.length === 0 ? (
         <div className="journal-empty">
           <p>{t("emptyTitle")}</p>
           <p className="journal-empty-hint">
             {t("emptyHintBefore")} <code>content/journal/</code>{" "}
-            {t("emptyHintAfter")} <code>published: true</code> {t("emptyHintEnd")}
+            {t("emptyHintAfter")} <code>published: true</code>{" "}
+            {t("emptyHintEnd")}
           </p>
         </div>
       ) : (
-        <div className="journal-posts">
+        <ol className="journal-list">
           {posts.map((post) => (
-            <Link
-              key={post.slug}
-              className="post-card"
-              href={`/journal/${post.slug}`}
-            >
-              <h3>{post.title}</h3>
-              {post.excerpt ? <p>{post.excerpt}</p> : null}
-              <small>
-                {formatJournalDate(post.date, locale)} · {post.categoryLabel}
-              </small>
-            </Link>
+            <li key={post.slug}>
+              <Link className="journal-item" href={`/journal/${post.slug}`}>
+                <span className="journal-item-content">
+                  <span className="journal-item-meta">
+                    <span className="journal-item-category">
+                      {post.categoryLabel}
+                    </span>
+                    <time
+                      className="journal-item-date"
+                      dateTime={post.date}
+                    >
+                      {formatJournalDate(post.date, locale)}
+                    </time>
+                  </span>
+                  <span className="journal-item-title">{post.title}</span>
+                  {post.excerpt ? (
+                    <span className="journal-item-excerpt">{post.excerpt}</span>
+                  ) : null}
+                </span>
+                <IconArrowRight className="svg-icon svg-icon-sm journal-item-arrow" />
+              </Link>
+            </li>
           ))}
-        </div>
+        </ol>
       )}
     </article>
   );

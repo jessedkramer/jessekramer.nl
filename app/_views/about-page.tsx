@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Footer from "@/components/Footer";
+import CurrentlyBar from "@/components/CurrentlyBar";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
 import type { AppLocale } from "@/i18n/config";
@@ -23,6 +24,7 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
       <WorldBackground />
       <SiteHeader activeNav="about" />
       <div className="home-stage home-stage--content">
+        <CurrentlyBar compact />
         <main className="page-shell content-page">
           <article className="card journal-article about-article">
             <p className="content-eyebrow">{t("eyebrow")}</p>

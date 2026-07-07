@@ -8,7 +8,10 @@ export default async function Footer() {
   return (
     <footer className="footer card">
       <div className="footer-left">
-        <h2>Jesse Kramer</h2>
+        <h2>
+          Jesse Kramer
+          <span className="footer-beta">BETA</span>
+        </h2>
         <p>
           {tEn.rich("slogan", {
             highlight: (chunks) => <span>{chunks}</span>,

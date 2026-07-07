@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
+import CurrentlyBar from "@/components/CurrentlyBar";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
 import type { AppLocale } from "@/i18n/config";
@@ -57,6 +58,7 @@ export async function JournalArticlePage({ locale, slug }: JournalArticlePagePro
       <WorldBackground />
       <SiteHeader activeNav="journal" />
       <div className="home-stage home-stage--content">
+        <CurrentlyBar compact />
         <main className="page-shell content-page">
           <article className="card journal-article">
             <Link className="text-link journal-back" href="/journal">

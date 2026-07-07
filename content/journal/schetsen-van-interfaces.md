@@ -8,8 +8,8 @@ excerptEn: Rough layouts, faster feedback, and fewer perfect components nobody a
 published: true
 ---
 
-Een schets op papier wint het nog steeds van een pixel-perfect scherm zonder plan.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 ---en---
 
-A sketch on paper still beats a pixel-perfect screen with no plan.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

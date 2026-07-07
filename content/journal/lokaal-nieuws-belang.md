@@ -6,6 +6,6 @@ excerpt: Over gemeenschapsinformatie, vertrouwen en context die landelijke feeds
 published: true
 ---
 
-Lokale context is moeilijk te vervangen door landelijke koppen of algoritmische feeds.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-Dit artikel heeft geen Engelse body en verschijnt daarom niet in English mode.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
