@@ -22,7 +22,9 @@ const iconMap = {
 export default async function SocialsCard() {
   const locale = (await getLocale()) as AppLocale;
   const socials = getSocialsCardContent(locale);
-  const listLinks = socials.links.filter((link) => link.showInList !== false && link.id !== "linkedin");
+  const listLinks = socials.links.filter(
+    (link) => link.showInList !== false || link.id === "linkedin",
+  );
   const linkedinLink = socials.links.find((link) => link.id === "linkedin");
 
   return (
@@ -47,7 +49,10 @@ export default async function SocialsCard() {
                 target={link.id === "email" ? undefined : "_blank"}
                 aria-label={link.id === "linkedin" ? socials.viewLinkedInAria : undefined}
               >
-                <span className="social-icon" aria-hidden="true">
+                <span
+                  className={`social-icon${link.id === "linkedin" ? " social-icon--linkedin" : ""}`}
+                  aria-hidden="true"
+                >
                   <Icon className="svg-icon" />
                 </span>
                 <span className="social-label">{link.label}</span>
