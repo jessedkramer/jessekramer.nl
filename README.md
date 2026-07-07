@@ -1,34 +1,16 @@
 # jessekramer.nl
 
-🌌 **Finding beauty in the digital world.**
+**Finding beauty in the digital world.**
 
-This repository contains the public website for **Jesse Kramer**.
+Personal website for Jesse Kramer — an AI-native publishing project where GitHub is the source of truth and Vercel deploys the public site.
 
-The goal is not to build a standard portfolio, but a personal digital universe: cosmic purple atmosphere, liquid glass widgets, and a calm editorial identity.
+## What this is
 
-## Vision
+Not a traditional CMS. Not a site where AI builds the frontend.
 
-A personal website should not just tell people who you are. It should let them experience who you are.
+This is a **stable Next.js application** with **content, config, and assets** designed to be edited by humans and AI without touching React components.
 
-## v1
-
-Version 1 is a static foundation:
-
-- CSS-only cosmic purple background
-- file-based journal in `content/journal/`
-- official X timeline embed with fallback
-- Jesse Kramer identity
-- currently status
-- liquid glass widgets
-- social links and public profile
-- live X placeholder
-- journal placeholder
-- municipality profile link
-- canonical domain setup for `jessekramer.nl`
-
-Later versions will add real assets, subtle animation, music, MDX journal content and the AI-native CMS workflow.
-
-## Development
+## Quick start
 
 ```bash
 npm install
@@ -37,9 +19,52 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Build
+## Content vs application
+
+| Layer | Location | Who edits |
+|-------|----------|-----------|
+| **Content** | `content/` | AI & humans (default) |
+| **Config** | `config/` | AI & humans |
+| **Assets** | `public/` | AI & humans |
+| **Application** | `app/`, `components/`, `lib/` | Developers only (unless explicitly requested) |
+
+## Common tasks
 
 ```bash
-npm run build
-npm start
+npm run validate:content   # Content integrity checks
+npm run build              # Production build
 ```
+
+| Task | Edit |
+|------|------|
+| Currently bar | `content/site/currently.json` |
+| Homepage widgets | `content/site/homepage.json` + `content/site/widgets/` |
+| Journal article | `content/journal/*.md` |
+| Categories | `content/journal/categories.json` |
+| Navigation / footer | `content/site/navigation.json`, `footer.json` |
+| Social links | `content/site/links.json` |
+| Branding / SEO | `content/site/branding.json` |
+
+## Documentation
+
+| File | Purpose |
+|------|---------|
+| [AGENTS.md](./AGENTS.md) | Rules for AI assistants (start here for AI) |
+| [CONTENT.md](./CONTENT.md) | Content operations manual |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | System design & principles |
+| [features/](./features/) | Per-feature registry |
+
+## Locales
+
+- Dutch (default): `/`, `/journal`, `/about`
+- English: `/en/*`
+
+## Deploy
+
+```text
+GitHub → Vercel → jessekramer.nl
+```
+
+Push to the default branch triggers deployment. Run `npm run validate:content` and `npm run build` before pushing when possible.
+
+**Note:** Do not run `npm run build` while `npm run dev` is active — clear `.next` and restart dev if you see 500 errors.

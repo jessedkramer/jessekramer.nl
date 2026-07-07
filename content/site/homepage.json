@@ -1,0 +1,34 @@
+{
+  "dashboardLabel": {
+    "nl": "Homepage dashboard",
+    "en": "Homepage dashboard"
+  },
+  "layout": {
+    "desktop": {
+      "columns": [
+        {
+          "id": "left",
+          "className": "dashboard-col dashboard-col--left",
+          "widgets": ["about", "municipality"]
+        },
+        {
+          "id": "center",
+          "className": "dashboard-col dashboard-col--center",
+          "widgets": ["socials"]
+        },
+        {
+          "id": "right",
+          "className": "dashboard-col dashboard-col--right",
+          "widgets": ["journal"]
+        }
+      ]
+    },
+    "mobileOrder": ["about", "socials", "journal", "municipality"]
+  },
+  "widgets": {
+    "about": { "enabled": true },
+    "socials": { "enabled": true },
+    "journal": { "enabled": true },
+    "municipality": { "enabled": true }
+  }
+}

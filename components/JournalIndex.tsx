@@ -4,13 +4,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { formatJournalDate } from "@/lib/format";
-import { JOURNAL_POSTS_PER_PAGE } from "@/lib/journal-constants";
+import { siteConfig } from "@/config/site.config";
 import type { JournalListEntry } from "@/types/journal";
-import { ORDERED_JOURNAL_CATEGORIES } from "@/types/journal";
 
 type JournalIndexProps = {
   posts: JournalListEntry[];
   locale: string;
+  categoryOrder: string[];
   initialQuery?: string;
   initialCategory?: string;
   initialPage?: number;
@@ -49,6 +49,7 @@ function buildJournalUrl(
 export default function JournalIndex({
   posts,
   locale,
+  categoryOrder,
   initialQuery = "",
   initialCategory = "",
   initialPage = 1,
@@ -100,10 +101,10 @@ export default function JournalIndex({
       map.set(post.category, post.categoryLabel);
     }
 
-    return ORDERED_JOURNAL_CATEGORIES.filter((key) => map.has(key)).map(
+    return categoryOrder.filter((key) => map.has(key)).map(
       (key) => [key, map.get(key)!] as const,
     );
-  }, [posts]);
+  }, [categoryOrder, posts]);
 
   const filteredPosts = useMemo(() => {
     const normalizedQuery = normalize(query);
@@ -119,7 +120,7 @@ export default function JournalIndex({
 
   const totalPages = Math.max(
     1,
-    Math.ceil(filteredPosts.length / JOURNAL_POSTS_PER_PAGE),
+    Math.ceil(filteredPosts.length / siteConfig.journal.postsPerPage),
   );
   const currentPage = Math.min(Math.max(page, 1), totalPages);
 
@@ -129,8 +130,8 @@ export default function JournalIndex({
     }
   }, [currentPage, page]);
   const pagePosts = filteredPosts.slice(
-    (currentPage - 1) * JOURNAL_POSTS_PER_PAGE,
-    currentPage * JOURNAL_POSTS_PER_PAGE,
+    (currentPage - 1) * siteConfig.journal.postsPerPage,
+    currentPage * siteConfig.journal.postsPerPage,
   );
 
   const handleSearchChange = (value: string) => {

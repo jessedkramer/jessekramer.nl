@@ -10,7 +10,8 @@ import WorldBackground from "@/components/WorldBackground";
 import type { AppLocale } from "@/i18n/config";
 import { formatJournalDate } from "@/lib/format";
 import { localizeJournalPost } from "@/lib/journal-display";
-import { buildJournalCategoryLabels } from "@/lib/journal-categories";
+import { buildJournalCategoryLabels } from "@/lib/journal/categories";
+import { getBrandingForLocale } from "@/lib/site";
 import {
   getJournalPost,
   isJournalPostVisibleInLocale,
@@ -27,16 +28,16 @@ export async function journalArticleMetadata({
   slug,
 }: JournalArticlePageProps): Promise<Metadata> {
   const post = getJournalPost(slug);
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const branding = getBrandingForLocale(locale);
 
   if (!post) {
-    return { title: t("journalFallbackTitle") };
+    return { title: `Journal ${branding.metadata.titleSuffix}` };
   }
 
   const localized = localizeJournalPost(post, locale);
 
   return {
-    title: `${localized.title} · Jesse Kramer`,
+    title: `${localized.title} ${branding.metadata.titleSuffix}`,
     description: localized.excerpt ?? localized.title,
   };
 }
@@ -44,7 +45,6 @@ export async function journalArticleMetadata({
 export async function JournalArticlePage({ locale, slug }: JournalArticlePageProps) {
   setRequestLocale(locale);
   const t = await getTranslations("journalPage");
-  const tCategories = await getTranslations("journalCategories");
   const post = getJournalPost(slug);
 
   if (!post || !isJournalPostVisibleInLocale(post, locale)) {
@@ -52,7 +52,7 @@ export async function JournalArticlePage({ locale, slug }: JournalArticlePagePro
   }
 
   const localized = localizeJournalPost(post, locale);
-  const categoryLabels = buildJournalCategoryLabels((key) => tCategories(key));
+  const categoryLabels = buildJournalCategoryLabels(locale);
 
   return (
     <div className="home journal-page">

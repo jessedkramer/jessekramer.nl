@@ -1,20 +1,4 @@
 {
-  "metadata": {
-    "siteTitle": "Jesse Kramer",
-    "siteDescription": "Schoonheid vinden in de digitale wereld.",
-    "aboutTitle": "Over mij · Jesse Kramer",
-    "aboutDescription": "Hoi, ik ben Jesse Kramer. Binnenkort vertel ik hier meer over mezelf.",
-    "journalTitle": "Journal · Jesse Kramer",
-    "journalFallbackTitle": "Journal"
-  },
-  "header": {
-    "navLabel": "Hoofdnavigatie",
-    "home": "Home",
-    "about": "Over mij",
-    "journal": "Journal",
-    "contact": "Contact",
-    "brandLabel": "Jesse Kramer home"
-  },
   "language": {
     "label": "Taal",
     "nl": "Nederlands",
@@ -22,60 +6,14 @@
     "switchToNl": "Schakel over naar Nederlands",
     "switchToEn": "Switch to English"
   },
-  "currently": {
-    "ariaLabel": "Live status",
-    "locationLabel": "Huidige locatie",
-    "locationValue": "Urk, Nederland",
-    "nowPlayingLabel": "Nu aan het spelen",
-    "soundtrackLabel": "Huidige soundtrack",
-    "trackTitle": "Purple Skyline",
-    "projectLabel": "Huidige bezigheid",
-    "projectValue": "Suits kijken op Netflix",
+  "currentlyControls": {
     "playMusic": "Purple Skyline-soundtrack afspelen",
     "pauseMusic": "Purple Skyline-soundtrack pauzeren"
   },
-  "home": {
-    "dashboardLabel": "Homepage dashboard"
-  },
   "aboutCard": {
-    "title": "Over mij",
-    "paragraph1": "Hoi, ik ben Jesse Kramer.",
-    "paragraph2": "Ik zal hier binnenkort meer neerzetten.",
     "readMore": "Lees meer"
   },
-  "aboutPage": {
-    "eyebrow": "Over mij",
-    "title": "Over mij",
-    "paragraph1": "Hoi, ik ben Jesse Kramer.",
-    "paragraph2": "Ik zal hier binnenkort meer neerzetten.",
-    "paragraph3": "",
-    "paragraph4": "",
-    "paragraph5": "",
-    "paragraph6": ""
-  },
-  "socialsCard": {
-    "title": "Socials & professioneel profiel",
-    "socialListLabel": "TheJessePost socials",
-    "linkedinBlockLabel": "Openbaar professioneel profiel",
-    "viewLinkedIn": "Bekijk LinkedIn",
-    "viewLinkedInAria": "Bekijk LinkedIn-profiel"
-  },
-  "socialLabels": {
-    "x": "X",
-    "steam": "Steam",
-    "github": "GitHub",
-    "email": "E-mail",
-    "linkedin": "LinkedIn"
-  },
-  "municipalityCard": {
-    "eyebrow": "Publiek profiel",
-    "title": "Gemeenteraad Urk",
-    "description": "Ik ben commissielid in de gemeenteraad van Urk.",
-    "viewProfile": "Bekijk profiel",
-    "profileAria": "Bekijk officieel Gemeenteraad Urk-profiel"
-  },
   "journalCard": {
-    "title": "Journal",
     "latestCount": "{count} recente artikelen",
     "allArticles": "Alle artikelen",
     "emptyTitle": "Nog geen gepubliceerde artikelen.",
@@ -84,9 +22,6 @@
     "emptyHintEnd": "om te beginnen."
   },
   "journalPage": {
-    "eyebrow": "Journal",
-    "title": "Langere teksten. Lees in je eigen tempo.",
-    "lead": "Een verzameling artikelen, ervaringen, inzichten en ideeën over alles wat mij inspireert.",
     "emptyTitle": "Nog geen gepubliceerde artikelen.",
     "emptyHintBefore": "Voeg een Markdown-bestand toe aan",
     "emptyHintAfter": "met",
@@ -103,18 +38,5 @@
     "paginationLabel": "Journal-paginering",
     "previousPage": "Vorige",
     "nextPage": "Volgende"
-  },
-  "journalCategories": {
-    "personal": "Persoonlijk",
-    "technology": "Technologie",
-    "design": "Design",
-    "travel": "Reizen",
-    "politics": "Politiek",
-    "gaming": "Gaming"
-  },
-  "footer": {
-    "slogan": "<highlight>Schoonheid</highlight> vinden in de digitale wereld.",
-    "copyright": "© 2026 Jesse Kramer. Alle rechten voorbehouden.",
-    "emailMe": "Mail me"
   }
 }

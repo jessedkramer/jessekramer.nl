@@ -1,0 +1,20 @@
+{
+  "anchorId": "council",
+  "eyebrow": {
+    "nl": "Publiek profiel",
+    "en": "Public profile"
+  },
+  "title": {
+    "nl": "Gemeenteraad Urk",
+    "en": "Municipal council of Urk"
+  },
+  "description": {
+    "nl": "Ik ben commissielid in de gemeenteraad van Urk.",
+    "en": "I am a committee member in the municipal council of Urk."
+  },
+  "profileHrefKey": "gemeente",
+  "profileAria": {
+    "nl": "Bekijk officieel Gemeenteraad Urk-profiel",
+    "en": "View official Municipal Council Urk profile"
+  }
+}

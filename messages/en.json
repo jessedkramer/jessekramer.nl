@@ -1,20 +1,4 @@
 {
-  "metadata": {
-    "siteTitle": "Jesse Kramer",
-    "siteDescription": "Finding beauty in the digital world.",
-    "aboutTitle": "About · Jesse Kramer",
-    "aboutDescription": "Hi, I’m Jesse Kramer. I’ll add more about myself here soon.",
-    "journalTitle": "Journal · Jesse Kramer",
-    "journalFallbackTitle": "Journal"
-  },
-  "header": {
-    "navLabel": "Main navigation",
-    "home": "Home",
-    "about": "About",
-    "journal": "Journal",
-    "contact": "Contact",
-    "brandLabel": "Jesse Kramer home"
-  },
   "language": {
     "label": "Language",
     "nl": "Nederlands",
@@ -22,60 +6,14 @@
     "switchToNl": "Switch to Dutch",
     "switchToEn": "Switch to English"
   },
-  "currently": {
-    "ariaLabel": "Live status",
-    "locationLabel": "Current location",
-    "locationValue": "Urk, Netherlands",
-    "nowPlayingLabel": "Now playing",
-    "soundtrackLabel": "Current soundtrack",
-    "trackTitle": "Purple Skyline",
-    "projectLabel": "Current focus",
-    "projectValue": "Watching Suits on Netflix",
+  "currentlyControls": {
     "playMusic": "Play Purple Skyline soundtrack",
     "pauseMusic": "Pause Purple Skyline soundtrack"
   },
-  "home": {
-    "dashboardLabel": "Homepage dashboard"
-  },
   "aboutCard": {
-    "title": "About",
-    "paragraph1": "Hi, I’m Jesse Kramer.",
-    "paragraph2": "I’ll add more here soon.",
     "readMore": "Read more"
   },
-  "aboutPage": {
-    "eyebrow": "About",
-    "title": "About me",
-    "paragraph1": "Hi, I’m Jesse Kramer.",
-    "paragraph2": "I’ll add more here soon.",
-    "paragraph3": "",
-    "paragraph4": "",
-    "paragraph5": "",
-    "paragraph6": ""
-  },
-  "socialsCard": {
-    "title": "Socials & Professional Profile",
-    "socialListLabel": "TheJessePost socials",
-    "linkedinBlockLabel": "Public professional profile",
-    "viewLinkedIn": "View LinkedIn",
-    "viewLinkedInAria": "View LinkedIn profile"
-  },
-  "socialLabels": {
-    "x": "X",
-    "steam": "Steam",
-    "github": "GitHub",
-    "email": "Email",
-    "linkedin": "LinkedIn"
-  },
-  "municipalityCard": {
-    "eyebrow": "Public profile",
-    "title": "Municipal council of Urk",
-    "description": "I am a committee member in the municipal council of Urk.",
-    "viewProfile": "View profile",
-    "profileAria": "View official Municipal Council Urk profile"
-  },
   "journalCard": {
-    "title": "Journal",
     "latestCount": "{count} recent articles",
     "allArticles": "All articles",
     "emptyTitle": "No published articles yet.",
@@ -84,9 +22,6 @@
     "emptyHintEnd": "to get started."
   },
   "journalPage": {
-    "eyebrow": "Journal",
-    "title": "Long-form writing. Read at your pace.",
-    "lead": "A collection of articles, experiences, insights, and ideas about everything that inspires me.",
     "emptyTitle": "No published articles yet.",
     "emptyHintBefore": "Add a Markdown file to",
     "emptyHintAfter": "with",
@@ -103,18 +38,5 @@
     "paginationLabel": "Journal pagination",
     "previousPage": "Previous",
     "nextPage": "Next"
-  },
-  "journalCategories": {
-    "personal": "Personal",
-    "technology": "Technology",
-    "design": "Design",
-    "travel": "Travel",
-    "politics": "Politics",
-    "gaming": "Gaming"
-  },
-  "footer": {
-    "slogan": "Finding <highlight>beauty</highlight> in the digital world.",
-    "copyright": "© 2026 Jesse Kramer. All rights reserved.",
-    "emailMe": "Email me"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "card": {
+    "title": { "nl": "Over mij", "en": "About" },
+    "paragraphs": [
+      { "nl": "Hoi, ik ben Jesse Kramer.", "en": "Hi, I'm Jesse Kramer." },
+      { "nl": "Ik zal hier binnenkort meer neerzetten.", "en": "I'll add more here soon." }
+    ],
+    "readMoreHref": "/about"
+  },
+  "page": {
+    "eyebrow": { "nl": "Over mij", "en": "About" },
+    "title": { "nl": "Over mij", "en": "About me" },
+    "paragraphs": [
+      { "nl": "Hoi, ik ben Jesse Kramer.", "en": "Hi, I'm Jesse Kramer." },
+      { "nl": "Ik zal hier binnenkort meer neerzetten.", "en": "I'll add more here soon." }
+    ]
+  }
+}

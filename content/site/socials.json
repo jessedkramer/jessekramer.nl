@@ -1,0 +1,33 @@
+{
+  "title": {
+    "nl": "Socials & professioneel profiel",
+    "en": "Socials & Professional Profile"
+  },
+  "socialListLabel": {
+    "nl": "TheJessePost socials",
+    "en": "TheJessePost socials"
+  },
+  "profileName": {
+    "nl": "Jesse Kramer",
+    "en": "Jesse Kramer"
+  },
+  "linkedinBlockLabel": {
+    "nl": "Openbaar professioneel profiel",
+    "en": "Public professional profile"
+  },
+  "viewLinkedIn": {
+    "nl": "Bekijk LinkedIn",
+    "en": "View LinkedIn"
+  },
+  "viewLinkedInAria": {
+    "nl": "Bekijk LinkedIn-profiel",
+    "en": "View LinkedIn profile"
+  },
+  "links": [
+    { "id": "x", "hrefKey": "x", "icon": "x", "label": { "nl": "X", "en": "X" } },
+    { "id": "steam", "hrefKey": "steam", "icon": "steam", "label": { "nl": "Steam", "en": "Steam" } },
+    { "id": "github", "hrefKey": "github", "icon": "github", "label": { "nl": "GitHub", "en": "GitHub" } },
+    { "id": "email", "hrefKey": "email", "icon": "email", "label": { "nl": "E-mail", "en": "Email" } },
+    { "id": "linkedin", "hrefKey": "linkedin", "icon": "linkedin", "label": { "nl": "LinkedIn", "en": "LinkedIn" }, "showInList": false }
+  ]
+}

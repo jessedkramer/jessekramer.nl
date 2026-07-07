@@ -1,17 +1,16 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import AboutCard from "@/components/AboutCard";
+import { setRequestLocale } from "next-intl/server";
 import CurrentlyBar from "@/components/CurrentlyBar";
 import Footer from "@/components/Footer";
-import JournalCard from "@/components/JournalCard";
-import MunicipalityCard from "@/components/MunicipalityCard";
+import HomepageDashboard from "@/components/HomepageDashboard";
 import SiteHeader from "@/components/SiteHeader";
-import SocialsCard from "@/components/SocialsCard";
 import WorldBackground from "@/components/WorldBackground";
 import type { AppLocale } from "@/i18n/config";
+import { getHomepageContent } from "@/lib/site";
+import { pickLocalized } from "@/lib/content/localized";
 
 export async function HomePage({ locale }: { locale: AppLocale }) {
   setRequestLocale(locale);
-  const t = await getTranslations("home");
+  const homepage = getHomepageContent();
 
   return (
     <div className="home">
@@ -20,12 +19,9 @@ export async function HomePage({ locale }: { locale: AppLocale }) {
       <div className="home-stage">
         <CurrentlyBar />
         <main className="page-shell">
-          <section className="dashboard" aria-label={t("dashboardLabel")}>
-            <AboutCard />
-            <SocialsCard />
-            <JournalCard />
-            <MunicipalityCard />
-          </section>
+          <HomepageDashboard
+            ariaLabel={pickLocalized(homepage.dashboardLabel, locale)}
+          />
         </main>
         <Footer />
       </div>

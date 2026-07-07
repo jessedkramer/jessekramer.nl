@@ -1,49 +1,70 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MobileBottomNav from "@/components/MobileBottomNav";
-import { LINKS } from "@/lib/links";
 import {
   IconAbout,
   IconHome,
   IconJournal,
   IconMail,
 } from "@/components/icons";
+import type { AppLocale } from "@/i18n/config";
+import { getBrandingForLocale, getNavigationForLocale } from "@/lib/site";
 
 type SiteHeaderProps = {
   activeNav?: "home" | "about" | "journal";
 };
 
+const navIcons = {
+  home: IconHome,
+  about: IconAbout,
+  journal: IconJournal,
+  mail: IconMail,
+} as const;
+
 export default async function SiteHeader({ activeNav = "home" }: SiteHeaderProps) {
-  const t = await getTranslations("header");
+  const locale = (await getLocale()) as AppLocale;
+  const navigation = getNavigationForLocale(locale);
+  const branding = getBrandingForLocale(locale);
+  const primaryItems = navigation.items.slice(0, 2);
+  const secondaryItems = navigation.items.slice(2);
 
   return (
     <>
       <header className="site-header">
-        <nav className="header-pill" aria-label={t("navLabel")}>
+        <nav className="header-pill" aria-label={navigation.ariaLabel}>
           <div className="header-nav-links">
-            <Link
-              className={`header-link${activeNav === "home" ? " is-active" : ""}`}
-              href="/"
-            >
-              <IconHome className="svg-icon svg-icon-nav" />
-              {t("home")}
-            </Link>
-            <Link
-              className={`header-link${activeNav === "about" ? " is-active" : ""}`}
-              href="/about"
-            >
-              <IconAbout className="svg-icon svg-icon-nav" />
-              {t("about")}
-            </Link>
+            {primaryItems.map((item) => {
+              const Icon = navIcons[item.icon];
+
+              if (item.external) {
+                return (
+                  <a key={item.id} className="header-link" href={item.href}>
+                    <Icon className="svg-icon svg-icon-nav" />
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.id}
+                  className={`header-link${activeNav === item.id ? " is-active" : ""}`}
+                  href={item.href}
+                >
+                  <Icon className="svg-icon svg-icon-nav" />
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
-          <Link className="brand" href="/" aria-label={t("brandLabel")}>
+          <Link className="brand" href="/" aria-label={navigation.brandLabel}>
             <Image
-              src="/images/logo.png"
-              alt="Jesse Kramer"
-              width={703}
-              height={219}
+              src={branding.logo.src}
+              alt={branding.logo.alt}
+              width={branding.logo.width}
+              height={branding.logo.height}
               className="brand-logo"
               priority
             />
@@ -52,17 +73,29 @@ export default async function SiteHeader({ activeNav = "home" }: SiteHeaderProps
             <LanguageSwitcher />
           </div>
           <div className="header-nav-links">
-            <Link
-              className={`header-link${activeNav === "journal" ? " is-active" : ""}`}
-              href="/journal"
-            >
-              <IconJournal className="svg-icon svg-icon-nav" />
-              {t("journal")}
-            </Link>
-            <a className="header-link" href={LINKS.email}>
-              <IconMail className="svg-icon svg-icon-nav" />
-              {t("contact")}
-            </a>
+            {secondaryItems.map((item) => {
+              const Icon = navIcons[item.icon];
+
+              if (item.external) {
+                return (
+                  <a key={item.id} className="header-link" href={item.href}>
+                    <Icon className="svg-icon svg-icon-nav" />
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.id}
+                  className={`header-link${activeNav === item.id ? " is-active" : ""}`}
+                  href={item.href}
+                >
+                  <Icon className="svg-icon svg-icon-nav" />
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       </header>

@@ -1,285 +1,151 @@
-# Architecture v1
+# Architecture — jessekramer.nl
 
-This document defines the foundation for **jessekramer.nl**.
+This document describes how the repository is organized for long-term maintenance by developers and AI assistants.
 
-The project is not just a personal website. It is the first version of an AI-native personal publishing workflow where GitHub is the source of truth, Vercel publishes the website, and AI collaborators help create, maintain and evolve the experience.
+## Core principle
 
-## Philosophy
+**Application code is stable. Content is editable.**
 
-**Finding beauty in the digital world.**
+New features follow one rule: code lives in `app/` and `components/`; visitor-facing text, links, and layout configuration live in `content/` and `config/`.
 
-A personal website should not just tell people who you are. It should let them experience who you are.
-
-The website should feel like a calm digital world instead of a standard portfolio. The visitor should immediately feel the identity, atmosphere and personality behind the site before reading every detail.
-
-## Canonical domain
-
-The canonical public domain is:
+## Layer model
 
 ```text
-https://jessekramer.nl
+┌─────────────────────────────────────────────┐
+│  Application (app/, components/, lib/)      │
+│  Next.js, React, routing, design system     │
+└─────────────────────────────────────────────┘
+                      ▲ reads
+┌─────────────────────────────────────────────┐
+│  Content (content/)                         │
+│  Copy, widgets, journal, categories         │
+└─────────────────────────────────────────────┘
+┌─────────────────────────────────────────────┐
+│  Config (config/)                           │
+│  Behavior: pagination, audio, layout limits │
+└─────────────────────────────────────────────┘
+┌─────────────────────────────────────────────┐
+│  Assets (public/)                           │
+│  Images, audio, icons, fonts                │
+└─────────────────────────────────────────────┘
 ```
 
-Other domains, including the Vercel preview/domain, are technical fallbacks and should redirect to the canonical domain where possible.
+## Single source of truth
 
-## Public repository
+| Data | Source file |
+|------|-------------|
+| Outbound URLs | `content/site/links.json` |
+| Navigation | `content/site/navigation.json` |
+| Footer | `content/site/footer.json` |
+| Currently bar | `content/site/currently.json` |
+| Homepage layout | `content/site/homepage.json` |
+| Widget copy | `content/site/widgets/*.json`, `socials.json` |
+| Branding / SEO | `content/site/branding.json` |
+| Journal categories | `content/journal/categories.json` |
+| Journal articles | `content/journal/*.md` |
 
-This repository contains the public website.
+## Content loading
 
-It may include:
+Server loaders in `lib/site/index.ts` read JSON at build time. Components receive data through these loaders — no hardcoded visitor copy in React files.
+
+Journal parsing lives in `lib/journal.ts` with categories from `lib/journal/categories.ts`.
+
+## Internationalization
+
+Two parallel route trees:
+
+- `app/(nl)/` — Dutch default routes
+- `app/en/` — English prefixed routes
+
+Content JSON uses `{ "nl": "...", "en": "..." }` objects. UI chrome (buttons, aria labels, empty states) stays in `messages/nl.json` and `messages/en.json`.
+
+Journal English visibility requires an English body after the `---en---` delimiter.
+
+## Validation
+
+`scripts/validate-content.mjs` checks:
+
+- Required content files exist and parse as JSON
+- Journal categories: duplicate IDs, unknown category keys in articles
+- Journal slugs: duplicate filenames
+- `hrefKey` references in navigation, socials, municipality
+- Homepage widget layout consistency (desktop columns + `mobileOrder`)
+- Currently bar href validity
+- Incomplete `nl`/`en` localization (warnings)
+
+Run via `npm run validate:content`.
+
+## Feature registry
+
+See [`features/README.md`](./features/README.md) for the full index.
+
+## AI assistant onboarding
+
+1. Read `AGENTS.md` for edit boundaries
+2. Read `CONTENT.md` for workflows
+3. Check `features/` for the specific area being changed
+4. Run `npm run validate:content` after edits
+
+## Routing (intentional current state)
+
+The site uses parallel `app/(nl)/` and `app/en/` trees rather than a unified `app/[locale]/` segment. This works correctly but is a future consolidation candidate — not changed in this refactor to avoid breaking routes.
+
+## Design principles
+
+These guide all future work — content and application alike.
+
+| Principle | Meaning |
+|-----------|---------|
+| **Calm over loud** | Atmosphere and clarity before spectacle |
+| **Content over effects** | Typography and writing carry the experience |
+| **Timeless over trendy** | Avoid gimmicks that date quickly |
+| **Glass, not chrome** | Liquid glass widgets over a cosmic background |
+| **Subtle motion** | Animations support mood, never demand attention |
+| **Mobile first** | Soundtrack and key interactions respect small screens |
+| **Accessible** | Semantic HTML, aria labels, keyboard-friendly controls |
+| **Performance** | Static generation, minimal client JS |
+| **AI-native** | Content lives in Git; AI edits files, not components |
+
+Canonical slogan: *Finding beauty in the digital world.*
+
+Jesse Kramer is the brand. TheJessePost appears only in social context.
+
+## Visual implementation
+
+Design tokens and component styles live in `app/globals.css` (`:root` variables, breakpoints, card classes). There is no separate style guide document — the CSS is the source of truth to prevent drift.
+
+Key tokens: cosmic purple palette, `--dash-max` (homepage), `--content-max` (editorial pages), liquid glass card styling.
+
+## Visual direction (unchanged)
+
+- Cosmic purple atmosphere, liquid glass widgets
+- Calm editorial identity — not a generic portfolio
+- Jesse Kramer is the brand; TheJessePost appears only in social context
+
+## Deployment
 
 ```text
-README.md
-ARCHITECTURE.md
-app/
-components/
-content/
-lib/
-public/
-types/
+GitHub → Vercel → https://jessekramer.nl
 ```
 
-It should not include private notes, personal strategy, sensitive AI context, private planning or deep personal memory.
+Static generation for journal articles; homepage and index pages pre-rendered at build time.
 
-## Future private brain repository
+## Future-ready (not built)
 
-Later, private AI context should move to a separate private repository, likely called:
+The architecture supports future additions without structural changes:
 
-```text
-jessekramer-brain
-```
+| Future feature | Extension pattern |
+|----------------|-------------------|
+| Portfolio / projects | `content/projects/` + loader + route |
+| Photo galleries | `content/galleries/` + co-located `public/` assets |
+| Travel logs | `content/travel/` or journal subcategories |
+| Changelog | `content/changelog/` |
+| Reading list / bookmarks | `content/reading/` or `content/bookmarks/` |
+| Newsletter | External service link in `links.json` + widget |
+| New homepage widget | `content/site/widgets/<name>.json` + component + `homepage.json` entry |
 
-That repository may contain:
+Add `content/<feature>/` + loader in `lib/` + route in `app/` + doc in `features/`.
 
-```text
-brain/
-overleg/
-decisions/
-writing-style.md
-brand-guidelines.md
-personal-context.md
-ai-rules.md
-roadmap-private.md
-```
+## Private context
 
-The public repository is the website. The private repository is the creative memory.
-
-## Current technical setup
-
-Version 1 runs on Next.js with a component-based homepage, file-based journal content and Vercel deployment.
-
-```text
-GitHub → Vercel → jessekramer.nl
-```
-
-## Homepage structure v1
-
-The homepage is based on the locked visual direction.
-
-```text
-Header
-Hero
-Currently
-Over mij
-Socials & Publiek profiel
-Live from X
-Journal
-Gemeenteraad Urk
-Footer
-```
-
-Removed from v1:
-
-```text
-Projects
-Online
-Building
-```
-
-Those sections do not fit the current identity of the site.
-
-## Visual direction
-
-The website should feel like TheJessePost translated into Jesse Kramer as a personal website.
-
-Core visual rules:
-
-- cosmic purple atmosphere
-- deep layered background with subtle motion
-- calm futuristic editorial mood
-- liquid glass widgets
-- SpaceX-like clarity with X.com readability
-- no heavy cyberpunk overload
-- no generic portfolio look
-- enough breathing room
-- the cosmic world continues behind the widgets and footer
-- Jesse Kramer is the brand, not TheJessePost
-
-TheJessePost appears only as part of the social identity, not as the website brand.
-
-## Header rules
-
-Header content:
-
-```text
-Home
-Over mij
-Jesse Kramer (centered wordmark)
-Journal
-Contact
-```
-
-The Jesse Kramer wordmark should visually match the handwritten `J.` style from the hoodie/fav icon direction.
-
-The Gemeenteraad Urk link lives in the municipality widget only, not in the header.
-
-## Currently system
-
-The currently block is a subtle status element in the hero.
-
-Example:
-
-```text
-CURRENTLY:
-⌖ Urk, Netherlands   ♫ Purple Skyline   ✧ Working on jessekramer.nl
-```
-
-Rules:
-
-- location can link to Wikipedia or Grokipedia
-- music should stay consistent as part of TheJessePost identity
-- activity can link to a relevant journal or tweet
-- updates happen when Jesse asks, mentions a change, publishes a journal, or when a relevant status change is intentionally made
-
-The system should remain human-directed. AI may suggest updates, but Jesse decides.
-
-## Socials & public profile widget
-
-This is one widget with two balanced parts.
-
-Left side:
-
-```text
-X
-GitHub
-Steam
-Email
-```
-
-Right side:
-
-```text
-LinkedIn logo
-Jesse Kramer
-professional description
-LinkedIn button
-```
-
-Rules:
-
-- widget title stays `Socials & Publiek profiel`
-- no YouTube or Discord in v1
-- no `TheJessePost` as a section title
-- LinkedIn is professional, not TheJessePost-branded
-
-## Municipality section
-
-The municipality section should stay small and subtle.
-
-It exists to acknowledge Jesse's official public role, not to turn the website into a political campaign site.
-
-Rules:
-
-- header button removed from v1 header
-- widget stays small
-- no party branding
-- no campaign language
-- link to official council profile later
-
-## Journal
-
-The Journal is for longer writing.
-
-It is Markdown/MDX driven from `content/journal/` with frontmatter:
-
-```text
-title
-date
-category
-excerpt
-cover (optional)
-published
-```
-
-Possible content:
-
-- digital identity
-- technology
-- travel
-- personal reflections
-- AI-native CMS progress
-- public role reflections, written professionally and carefully
-
-The Journal is not a traditional WordPress blog and should not feel like a news feed.
-
-## Live from X
-
-The Live from X widget uses the official X embedded timeline for @TheJessePost where possible.
-
-Rules:
-
-- show current activity from @TheJessePost
-- no fake sample tweets or engagement numbers
-- if the embed cannot load, show a polished fallback with a link to the profile
-- no duplicate `Show more on X` button if `View on X` already exists
-- keep the widget visually integrated in the liquid glass style
-
-## AI-native workflow
-
-The desired workflow:
-
-```text
-Jesse describes a change
-↓
-ChatGPT or Grok edits the repository
-↓
-GitHub stores the change
-↓
-Vercel deploys automatically
-↓
-jessekramer.nl updates
-```
-
-The human keeps the vision, taste and final decision. AI handles execution, iteration and publishing support.
-
-## Future AI-native CMS
-
-The eventual CMS concept:
-
-- content lives in GitHub
-- pages and journals are Markdown/MDX
-- AI helps write, edit, translate and publish
-- GitHub remains the source of truth
-- Vercel handles deployment
-- private brain repository contains strategy, writing style and AI rules
-
-## Design principle
-
-Every new feature must strengthen the experience, not demand attention.
-
-Avoid:
-
-- unnecessary widgets
-- noisy animations
-- generic portfolio sections
-- over-branding TheJessePost
-- features that exist only because they are technically possible
-
-Prioritize:
-
-- calm atmosphere
-- personal identity
-- clarity
-- consistency
-- subtle beauty
-- maintainability
+Private AI context and strategy belong in a separate private repository (`jessekramer-brain`), not in this public site repo.

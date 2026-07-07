@@ -1,0 +1,32 @@
+{
+  "name": "Jesse Kramer",
+  "betaLabel": "BETA",
+  "tagline": {
+    "nl": "Schoonheid vinden in de digitale wereld.",
+    "en": "Finding beauty in the digital world."
+  },
+  "taglineHighlight": {
+    "nl": "Schoonheid",
+    "en": "beauty"
+  },
+  "logo": {
+    "src": "/images/logo.png",
+    "alt": {
+      "nl": "Jesse Kramer",
+      "en": "Jesse Kramer"
+    },
+    "width": 703,
+    "height": 219
+  },
+  "metadata": {
+    "title": {
+      "nl": "Jesse Kramer",
+      "en": "Jesse Kramer"
+    },
+    "description": {
+      "nl": "Schoonheid vinden in de digitale wereld.",
+      "en": "Finding beauty in the digital world."
+    },
+    "titleSuffix": "· Jesse Kramer"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "page": {
+    "eyebrow": { "nl": "Journal", "en": "Journal" },
+    "title": {
+      "nl": "Langere teksten. Lees in je eigen tempo.",
+      "en": "Long-form writing. Read at your pace."
+    },
+    "lead": {
+      "nl": "Een verzameling artikelen, ervaringen, inzichten en ideeën over alles wat mij inspireert.",
+      "en": "A collection of articles, experiences, insights, and ideas about everything that inspires me."
+    }
+  },
+  "card": {
+    "title": { "nl": "Journal", "en": "Journal" },
+    "previewCount": 3
+  }
+}

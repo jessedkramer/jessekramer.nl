@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import LocaleSync from "@/components/LocaleSync";
 import type { AppLocale } from "@/i18n/config";
+import { getBrandingForLocale } from "@/lib/site";
 import "@/app/globals.css";
 
 export const localeViewport: Viewport = {
@@ -13,14 +14,14 @@ export const localeViewport: Viewport = {
 };
 
 export async function createLocaleMetadata(locale: AppLocale): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const branding = getBrandingForLocale(locale);
 
   return {
-    title: t("siteTitle"),
-    description: t("siteDescription"),
+    title: branding.metadata.title,
+    description: branding.metadata.description,
     openGraph: {
-      title: t("siteTitle"),
-      description: t("siteDescription"),
+      title: branding.metadata.title,
+      description: branding.metadata.description,
     },
   };
 }

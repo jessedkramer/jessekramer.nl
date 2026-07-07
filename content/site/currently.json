@@ -1,0 +1,55 @@
+{
+  "ariaLabel": {
+    "nl": "Live status",
+    "en": "Live status"
+  },
+  "segments": [
+    {
+      "id": "location",
+      "type": "link",
+      "icon": "📍",
+      "label": {
+        "nl": "Huidige locatie",
+        "en": "Current location"
+      },
+      "value": {
+        "nl": "Urk, Nederland",
+        "en": "Urk, Netherlands"
+      },
+      "href": "https://en.wikipedia.org/wiki/Urk",
+      "external": true
+    },
+    {
+      "id": "soundtrack",
+      "type": "soundtrack",
+      "mobileOnly": true,
+      "label": {
+        "nl": "Huidige soundtrack",
+        "en": "Current soundtrack"
+      },
+      "playingLabel": {
+        "nl": "Nu aan het spelen",
+        "en": "Now playing"
+      },
+      "trackTitle": {
+        "nl": "Purple Skyline",
+        "en": "Purple Skyline"
+      }
+    },
+    {
+      "id": "project",
+      "type": "link",
+      "icon": "✨",
+      "label": {
+        "nl": "Huidige bezigheid",
+        "en": "Current focus"
+      },
+      "value": {
+        "nl": "Suits kijken op Netflix",
+        "en": "Watching Suits on Netflix"
+      },
+      "href": "/",
+      "internal": true
+    }
+  ]
+}

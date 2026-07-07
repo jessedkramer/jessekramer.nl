@@ -1,8 +1,12 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { IconAbout, IconArrowRight } from "@/components/icons";
+import type { AppLocale } from "@/i18n/config";
+import { getAboutCardContent } from "@/lib/site";
 
 export default async function AboutCard() {
+  const locale = (await getLocale()) as AppLocale;
+  const content = getAboutCardContent(locale);
   const t = await getTranslations("aboutCard");
 
   return (
@@ -11,13 +15,14 @@ export default async function AboutCard() {
         <span className="card-icon" aria-hidden="true">
           <IconAbout className="svg-icon" />
         </span>
-        {t("title")}
+        {content.title}
       </h2>
       <div className="about-copy">
-        <p>{t("paragraph1")}</p>
-        <p>{t("paragraph2")}</p>
+        {content.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
       </div>
-      <Link className="small-button about-button" href="/about">
+      <Link className="small-button about-button" href={content.readMoreHref}>
         {t("readMore")} <IconArrowRight className="svg-icon svg-icon-sm" />
       </Link>
     </article>

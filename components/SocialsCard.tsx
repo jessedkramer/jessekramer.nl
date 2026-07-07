@@ -1,5 +1,4 @@
-import { getTranslations } from "next-intl/server";
-import { LINKS } from "@/lib/links";
+import { getLocale } from "next-intl/server";
 import {
   IconArrowRight,
   IconGitHub,
@@ -9,10 +8,22 @@ import {
   IconSteam,
   IconX,
 } from "@/components/icons";
+import type { AppLocale } from "@/i18n/config";
+import { getSocialsCardContent } from "@/lib/site";
+
+const iconMap = {
+  x: IconX,
+  steam: IconSteam,
+  github: IconGitHub,
+  email: IconMail,
+  linkedin: IconLinkedIn,
+} as const;
 
 export default async function SocialsCard() {
-  const t = await getTranslations("socialsCard");
-  const labels = await getTranslations("socialLabels");
+  const locale = (await getLocale()) as AppLocale;
+  const socials = getSocialsCardContent(locale);
+  const listLinks = socials.links.filter((link) => link.showInList !== false && link.id !== "linkedin");
+  const linkedinLink = socials.links.find((link) => link.id === "linkedin");
 
   return (
     <article className="card socials-card" id="socials">
@@ -20,83 +31,49 @@ export default async function SocialsCard() {
         <span className="card-icon" aria-hidden="true">
           <IconCouncil className="svg-icon" />
         </span>
-        {t("title")}
+        {socials.title}
       </h2>
       <div className="socials-layout">
-        <div className="social-list" aria-label={t("socialListLabel")}>
-          <a
-            className="social-row"
-            href={LINKS.x}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <span className="social-icon" aria-hidden="true">
-              <IconX className="svg-icon" />
-            </span>
-            <span className="social-label">{labels("x")}</span>
-            <IconArrowRight className="svg-icon svg-icon-sm social-arrow" />
-          </a>
-          <a
-            className="social-row"
-            href={LINKS.steam}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <span className="social-icon" aria-hidden="true">
-              <IconSteam className="svg-icon" />
-            </span>
-            <span className="social-label">{labels("steam")}</span>
-            <IconArrowRight className="svg-icon svg-icon-sm social-arrow" />
-          </a>
-          <a
-            className="social-row"
-            href={LINKS.github}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <span className="social-icon" aria-hidden="true">
-              <IconGitHub className="svg-icon" />
-            </span>
-            <span className="social-label">{labels("github")}</span>
-            <IconArrowRight className="svg-icon svg-icon-sm social-arrow" />
-          </a>
-          <a className="social-row" href={LINKS.email}>
-            <span className="social-icon" aria-hidden="true">
-              <IconMail className="svg-icon" />
-            </span>
-            <span className="social-label">{labels("email")}</span>
-            <IconArrowRight className="svg-icon svg-icon-sm social-arrow" />
-          </a>
+        <div className="social-list" aria-label={socials.socialListLabel}>
+          {listLinks.map((link) => {
+            const Icon = iconMap[link.icon as keyof typeof iconMap] ?? IconMail;
+
+            return (
+              <a
+                key={link.id}
+                className={`social-row${link.id === "linkedin" ? " social-row--linkedin" : ""}`}
+                href={link.href}
+                rel={link.id === "email" ? undefined : "noreferrer"}
+                target={link.id === "email" ? undefined : "_blank"}
+                aria-label={link.id === "linkedin" ? socials.viewLinkedInAria : undefined}
+              >
+                <span className="social-icon" aria-hidden="true">
+                  <Icon className="svg-icon" />
+                </span>
+                <span className="social-label">{link.label}</span>
+                <IconArrowRight className="svg-icon svg-icon-sm social-arrow" />
+              </a>
+            );
+          })}
           <span className="social-separator" aria-hidden="true" />
-          <a
-            className="social-row social-row--linkedin"
-            href={LINKS.linkedin}
-            rel="noreferrer"
-            target="_blank"
-            aria-label={t("viewLinkedInAria")}
-          >
-            <span className="social-icon social-icon--linkedin" aria-hidden="true">
-              <IconLinkedIn className="svg-icon" />
-            </span>
-            <span className="social-label">{labels("linkedin")}</span>
-            <IconArrowRight className="svg-icon svg-icon-sm social-arrow" />
-          </a>
         </div>
-        <div className="linkedin-block" aria-label={t("linkedinBlockLabel")}>
+        <div className="linkedin-block" aria-label={socials.linkedinBlockLabel}>
           <div className="linkedin-logo" aria-hidden="true">
             <IconLinkedIn className="svg-icon svg-icon-lg" />
           </div>
-          <h3>Jesse Kramer</h3>
-          <a
-            className="small-button"
-            href={LINKS.linkedin}
-            rel="noreferrer"
-            target="_blank"
-            aria-label={t("viewLinkedInAria")}
-          >
-            {t("viewLinkedIn")}{" "}
-            <IconArrowRight className="svg-icon svg-icon-sm" />
-          </a>
+          <h3>{socials.profileName}</h3>
+          {linkedinLink ? (
+            <a
+              className="small-button"
+              href={linkedinLink.href}
+              rel="noreferrer"
+              target="_blank"
+              aria-label={socials.viewLinkedInAria}
+            >
+              {socials.viewLinkedIn}{" "}
+              <IconArrowRight className="svg-icon svg-icon-sm" />
+            </a>
+          ) : null}
         </div>
       </div>
     </article>

@@ -1,0 +1,37 @@
+{
+  "ariaLabel": {
+    "nl": "Hoofdnavigatie",
+    "en": "Main navigation"
+  },
+  "brandLabel": {
+    "nl": "Jesse Kramer home",
+    "en": "Jesse Kramer home"
+  },
+  "items": [
+    {
+      "id": "home",
+      "href": "/",
+      "icon": "home",
+      "label": { "nl": "Home", "en": "Home" }
+    },
+    {
+      "id": "about",
+      "href": "/about",
+      "icon": "about",
+      "label": { "nl": "Over mij", "en": "About" }
+    },
+    {
+      "id": "journal",
+      "href": "/journal",
+      "icon": "journal",
+      "label": { "nl": "Journal", "en": "Journal" }
+    },
+    {
+      "id": "contact",
+      "hrefKey": "email",
+      "icon": "mail",
+      "external": true,
+      "label": { "nl": "Contact", "en": "Contact" }
+    }
+  ]
+}

@@ -1,20 +1,21 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { formatJournalDate } from "@/lib/format";
-import { buildJournalCategoryLabels } from "@/lib/journal-categories";
+import { buildJournalCategoryLabels } from "@/lib/journal/categories";
 import { getPublishedJournalPosts } from "@/lib/journal";
+import { getJournalPageContent } from "@/lib/site";
 import { IconArrowRight, IconJournal } from "@/components/icons";
 import type { AppLocale } from "@/i18n/config";
 
 export default async function JournalCard() {
   const t = await getTranslations("journalCard");
-  const tCategories = await getTranslations("journalCategories");
-  const locale = await getLocale();
-  const categoryLabels = buildJournalCategoryLabels((key) => tCategories(key));
+  const locale = (await getLocale()) as AppLocale;
+  const widget = getJournalPageContent(locale);
+  const categoryLabels = buildJournalCategoryLabels(locale);
   const posts = getPublishedJournalPosts(
-    locale as AppLocale,
+    locale,
     categoryLabels,
-    3,
+    widget.previewCount,
   );
 
   return (
@@ -25,7 +26,7 @@ export default async function JournalCard() {
             <span className="card-icon" aria-hidden="true">
               <IconJournal className="svg-icon" />
             </span>
-            {t("title")}
+            {widget.cardTitle}
           </h2>
           {posts.length > 0 ? (
             <p className="journal-card__subtitle">

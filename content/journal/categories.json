@@ -1,0 +1,58 @@
+{
+  "categories": [
+    {
+      "id": "design",
+      "sortOrder": 1,
+      "labels": { "nl": "Design", "en": "Design" },
+      "description": {
+        "nl": "Interface-, visueel- en productdesign.",
+        "en": "Interface, visual, and product design."
+      }
+    },
+    {
+      "id": "gaming",
+      "sortOrder": 2,
+      "labels": { "nl": "Gaming", "en": "Gaming" },
+      "description": {
+        "nl": "Games, communities en digitale ontspanning.",
+        "en": "Games, communities, and digital downtime."
+      }
+    },
+    {
+      "id": "personal",
+      "sortOrder": 3,
+      "labels": { "nl": "Persoonlijk", "en": "Personal" },
+      "description": {
+        "nl": "Persoonlijke notities en reflecties.",
+        "en": "Personal notes and reflections."
+      }
+    },
+    {
+      "id": "politics",
+      "sortOrder": 4,
+      "labels": { "nl": "Politiek", "en": "Politics" },
+      "description": {
+        "nl": "Lokaal bestuur, transparantie en maatschappij.",
+        "en": "Local government, transparency, and society."
+      }
+    },
+    {
+      "id": "travel",
+      "sortOrder": 5,
+      "labels": { "nl": "Reizen", "en": "Travel" },
+      "description": {
+        "nl": "Reisnotities en onderweg gezien.",
+        "en": "Travel notes and things seen along the way."
+      }
+    },
+    {
+      "id": "technology",
+      "sortOrder": 6,
+      "labels": { "nl": "Technologie", "en": "Technology" },
+      "description": {
+        "nl": "Web, tooling, AI en digitale craft.",
+        "en": "Web, tooling, AI, and digital craft."
+      }
+    }
+  ]
+}

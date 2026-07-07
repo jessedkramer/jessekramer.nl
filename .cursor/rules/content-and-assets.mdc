@@ -6,18 +6,30 @@ alwaysApply: false
 
 # Content and Assets
 
+## Site content (content/site/)
+
+- Site-wide copy lives in `content/site/` as JSON (currently bar, widgets, nav, footer, branding).
+- Outbound URLs: `content/site/links.json` only — never duplicate in components.
+- Homepage widget layout: `content/site/homepage.json`.
+
 ## Journal content
 
-- Journal posts live in `content/journal/` as Markdown or MDX (when introduced).
+- Journal posts live in `content/journal/` as Markdown.
+- Categories: `content/journal/categories.json`.
 - GitHub remains the source of truth for public content.
 - Keep writing tone calm, personal, and professional where public role is referenced.
 
 ## Public assets
 
 - Images go in `public/images/`.
+- Audio goes in `public/audio/`.
 - Icons go in `public/icons/`.
 - Fonts go in `public/fonts/`.
-- Reference assets with root-relative paths: `/images/...`, `/icons/...`, `/fonts/...`.
+- Reference assets with root-relative paths: `/images/...`, `/audio/...`, etc.
+
+## Validation
+
+Run `npm run validate:content` after content changes.
 
 ## Do not
 

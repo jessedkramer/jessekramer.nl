@@ -3,19 +3,19 @@ import "server-only";
 import fs from "fs";
 import path from "path";
 import type { AppLocale } from "@/i18n/config";
-import { JOURNAL_DIR } from "@/lib/content-paths";
-import { JOURNAL_POSTS_PER_PAGE } from "@/lib/journal-constants";
+import { JOURNAL_DIR } from "@/lib/content/paths";
 import { toJournalListEntry } from "@/lib/journal-display";
+import {
+  getOrderedJournalCategoryIds,
+  isValidJournalCategory,
+} from "@/lib/journal/categories";
 import type {
   JournalCategory,
   JournalFrontmatter,
   JournalListEntry,
   JournalPost,
 } from "@/types/journal";
-import { ORDERED_JOURNAL_CATEGORIES } from "@/types/journal";
-
 const EN_CONTENT_DELIMITER = "\n---en---\n";
-const JOURNAL_CATEGORIES = new Set<JournalCategory>(ORDERED_JOURNAL_CATEGORIES);
 
 export function hasEnglishBody(post: JournalPost): boolean {
   return Boolean(post.contentEn?.trim());
@@ -37,8 +37,6 @@ function getVisibleJournalPosts(locale: AppLocale): JournalPost[] {
     isJournalPostVisibleInLocale(post, locale),
   );
 }
-
-export { JOURNAL_POSTS_PER_PAGE } from "@/lib/journal-constants";
 
 /**
  * Add a journal article as a Markdown file in content/journal/.
@@ -118,7 +116,7 @@ function readJournalFile(fileName: string): JournalPost | null {
     !data.title ||
     !data.date ||
     !data.category ||
-    !JOURNAL_CATEGORIES.has(data.category) ||
+    !isValidJournalCategory(data.category) ||
     data.published !== true
   ) {
     return null;
@@ -191,5 +189,5 @@ export function getJournalSlugsForLocale(locale: AppLocale): string[] {
 }
 
 export function getJournalCategoryKeys(): JournalCategory[] {
-  return [...ORDERED_JOURNAL_CATEGORIES];
+  return getOrderedJournalCategoryIds();
 }

@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import Footer from "@/components/Footer";
 import CurrentlyBar from "@/components/CurrentlyBar";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
 import type { AppLocale } from "@/i18n/config";
+import { getAboutPageContent, getBrandingForLocale } from "@/lib/site";
 
 export async function aboutMetadata(locale: AppLocale): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const branding = getBrandingForLocale(locale);
+  const about = getAboutPageContent(locale);
 
   return {
-    title: t("aboutTitle"),
-    description: t("aboutDescription"),
+    title: `${about.title} ${branding.metadata.titleSuffix}`,
+    description: about.paragraphs[0] ?? branding.metadata.description,
   };
 }
 
 export async function AboutPage({ locale }: { locale: AppLocale }) {
   setRequestLocale(locale);
-  const t = await getTranslations("aboutPage");
+  const content = getAboutPageContent(locale);
 
   return (
     <div className="home about-page">
@@ -27,15 +29,12 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
         <CurrentlyBar compact />
         <main className="page-shell content-page">
           <article className="card journal-article about-article">
-            <p className="content-eyebrow">{t("eyebrow")}</p>
-            <h1>{t("title")}</h1>
+            <p className="content-eyebrow">{content.eyebrow}</p>
+            <h1>{content.title}</h1>
             <div className="journal-content">
-              <p>{t("paragraph1")}</p>
-              <p>{t("paragraph2")}</p>
-              <p>{t("paragraph3")}</p>
-              <p>{t("paragraph4")}</p>
-              <p>{t("paragraph5")}</p>
-              <p>{t("paragraph6")}</p>
+              {content.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </article>
         </main>

@@ -1,19 +1,4 @@
-export type JournalCategory =
-  | "personal"
-  | "technology"
-  | "design"
-  | "travel"
-  | "politics"
-  | "gaming";
-
-export const ORDERED_JOURNAL_CATEGORIES: JournalCategory[] = [
-  "design",
-  "gaming",
-  "personal",
-  "politics",
-  "travel",
-  "technology",
-];
+export type JournalCategory = string;
 
 export type JournalFrontmatter = {
   title: string;
@@ -24,6 +9,14 @@ export type JournalFrontmatter = {
   excerptEn?: string;
   cover?: string;
   published: boolean;
+  draft?: boolean;
+  featured?: boolean;
+  pinned?: boolean;
+  tags?: string[];
+  updatedDate?: string;
+  readingTime?: number;
+  series?: string;
+  canonical?: string;
 };
 
 export type JournalPost = JournalFrontmatter & {
@@ -40,3 +33,5 @@ export type JournalListEntry = {
   categoryLabel: string;
   excerpt?: string;
 };
+
+export type JournalLifecycleStatus = "draft" | "published" | "archived";
