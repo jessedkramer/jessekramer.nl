@@ -141,68 +141,81 @@ body {
   min-height: 0;
 }
 
-.home.journal-index-page,
 .home.about-page {
   height: 100dvh;
   max-height: 100dvh;
   overflow: hidden;
 }
 
-.home.journal-index-page .home-stage--content,
 .home.about-page .home-stage--content {
   min-height: 0;
   overflow: hidden;
 }
 
-.home.journal-index-page .content-hero,
-.home.journal-index-page .journal-toolbar,
-.home.journal-index-page .journal-results-meta,
-.home.journal-index-page .journal-pagination {
-  flex-shrink: 0;
+@media (min-width: 641px) {
+  .home.journal-index-page {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .home.journal-index-page .home-stage--content {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .home.journal-index-page .content-hero,
+  .home.journal-index-page .journal-toolbar,
+  .home.journal-index-page .journal-results-meta,
+  .home.journal-index-page .journal-pagination {
+    flex-shrink: 0;
+  }
+
+  .home.journal-index-page .page-shell.content-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .home.journal-index-page .journal-index {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .home.journal-index-page .journal-results-panel {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .home.journal-index-page .journal-index-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 229, 255, .22) transparent;
+  }
+
+  .home.journal-index-page .journal-index-list::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .home.journal-index-page .journal-index-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 229, 255, .18);
+    border-radius: 999px;
+  }
 }
 
-.home.journal-index-page .page-shell.content-page,
 .home.about-page .page-shell.content-page {
   display: flex;
   flex-direction: column;
   min-height: 0;
-}
-
-.home.journal-index-page .journal-index {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.home.journal-index-page .journal-results-panel {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.home.journal-index-page .journal-index-list {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 229, 255, .22) transparent;
-}
-
-.home.journal-index-page .journal-index-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.home.journal-index-page .journal-index-list::-webkit-scrollbar-thumb {
-  background: rgba(0, 229, 255, .18);
-  border-radius: 999px;
-}
-
-.home.about-page .page-shell.content-page {
   flex: 1;
   overflow-y: auto;
 }
@@ -1764,6 +1777,54 @@ h2 {
   padding-inline: 10px;
 }
 
+@media (min-width: 641px) {
+  .journal-pagination {
+    margin-top: 4px;
+    padding: 12px 16px;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(8, 12, 28, .52);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .06),
+      0 8px 24px rgba(0, 0, 0, .16);
+    gap: 10px;
+  }
+
+  .journal-page-btn {
+    padding: 8px 14px;
+    font-size: clamp(.7rem, .74vw, .78rem);
+    border-color: rgba(0, 229, 255, .24);
+    background: rgba(8, 12, 28, .58);
+    color: rgba(245, 242, 255, .94);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+
+  .journal-page-btn:hover:not(:disabled),
+  .journal-page-btn:focus-visible:not(:disabled) {
+    border-color: rgba(255, 0, 127, .3);
+    background: rgba(12, 16, 36, .66);
+    color: #fff;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .06),
+      0 0 14px rgba(255, 0, 127, .1);
+  }
+
+  .journal-page-number.is-active {
+    border-color: rgba(255, 0, 127, .34);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .1),
+      0 0 16px rgba(255, 0, 127, .14);
+  }
+
+  .journal-pagination > .journal-page-btn:first-child,
+  .journal-pagination > .journal-page-btn:last-child {
+    padding-inline: 16px;
+    border-color: rgba(0, 229, 255, .3);
+    background: rgba(10, 14, 34, .66);
+    letter-spacing: .02em;
+  }
+}
+
 .journal-back {
   display: inline-flex;
   margin-bottom: 14px;
@@ -2949,32 +3010,76 @@ button:focus-visible {
     padding-bottom: calc(var(--mobile-nav-h) + 12px);
   }
 
-  .home.about-page,
-  .home.journal-index-page {
+  .home.about-page {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
   }
 
-  .home.about-page .home-stage--content,
-  .home.journal-index-page .home-stage--content {
+  .home.about-page .home-stage--content {
     flex: 1;
     min-height: 0;
     display: flex;
     flex-direction: column;
   }
 
-  .home.about-page .home-stage--content .page-shell.content-page,
-  .home.journal-index-page .home-stage--content .page-shell.content-page {
+  .home.about-page .home-stage--content .page-shell.content-page {
     flex: 1;
     min-height: 0;
     overflow: hidden;
   }
 
-  .home.about-page .home-stage--content .footer,
-  .home.journal-index-page .home-stage--content .footer {
+  .home.about-page .home-stage--content .footer {
     margin-top: auto;
     flex-shrink: 0;
+  }
+
+  .home.journal-index-page {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    min-height: 100dvh;
+  }
+
+  .home.journal-index-page .home-stage--content {
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+    display: block;
+  }
+
+  .home.journal-index-page .page-shell.content-page {
+    display: block;
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .home.journal-index-page .journal-index,
+  .home.journal-index-page .journal-results-panel {
+    display: grid;
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .home.journal-index-page .journal-index-list {
+    display: flex;
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .home.journal-index-page .journal-index {
+    gap: 10px;
+  }
+
+  .home.journal-index-page .journal-results-panel {
+    gap: 12px;
+  }
+
+  .home.journal-index-page .home-stage--content .footer {
+    margin-top: clamp(10px, 2vh, 18px);
   }
 
   .home-stage .page-shell,
