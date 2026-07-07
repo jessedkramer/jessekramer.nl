@@ -48,8 +48,8 @@
         "nl": "Suits kijken op Netflix",
         "en": "Watching Suits on Netflix"
       },
-      "href": "/",
-      "internal": true
+      "href": "https://www.netflix.com/title/70195800",
+      "external": true
     }
   ]
 }
