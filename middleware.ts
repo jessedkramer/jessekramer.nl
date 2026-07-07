@@ -1,15 +1,8 @@
 import createMiddleware from "next-intl/middleware";
-import { LOCALE_COOKIE, routing } from "./i18n/routing";
+import { routing } from "./i18n/routing";
 
-export default createMiddleware({
-  ...routing,
-  localeDetection: false,
-  localeCookie: {
-    name: LOCALE_COOKIE,
-    maxAge: 60 * 60 * 24 * 365,
-  },
-});
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: ["/", "/(nl|en)/:path*", "/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };
