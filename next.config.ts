@@ -4,6 +4,11 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    "/[locale]": ["./content/journal/**/*"],
+    "/[locale]/journal": ["./content/journal/**/*"],
+    "/[locale]/journal/[slug]": ["./content/journal/**/*"],
+  },
   async redirects() {
     return [
       {

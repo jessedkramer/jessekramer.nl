@@ -1,6 +1,9 @@
+import "server-only";
+
 import fs from "fs";
 import path from "path";
 import type { AppLocale } from "@/i18n/routing";
+import { JOURNAL_DIR } from "@/lib/content-paths";
 import { JOURNAL_POSTS_PER_PAGE } from "@/lib/journal-constants";
 import { toJournalListEntry } from "@/lib/journal-display";
 import type {
@@ -11,7 +14,6 @@ import type {
 } from "@/types/journal";
 import { ORDERED_JOURNAL_CATEGORIES } from "@/types/journal";
 
-const JOURNAL_DIR = path.join(process.cwd(), "content/journal");
 const EN_CONTENT_DELIMITER = "\n---en---\n";
 const JOURNAL_CATEGORIES = new Set<JournalCategory>(ORDERED_JOURNAL_CATEGORIES);
 
