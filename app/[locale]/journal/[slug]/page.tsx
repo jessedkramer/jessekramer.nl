@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
 import { routing } from "@/i18n/routing";
-import type { AppLocale } from "@/i18n/routing";
+import type { AppLocale } from "@/i18n/config";
 import { formatJournalDate } from "@/lib/format";
 import { localizeJournalPost } from "@/lib/journal-display";
 import { buildJournalCategoryLabels } from "@/lib/journal-categories";
@@ -16,6 +16,8 @@ import {
   isJournalPostVisibleInLocale,
 } from "@/lib/journal";
 import { renderMarkdown } from "@/lib/markdown";
+
+export const runtime = "nodejs";
 
 type JournalArticlePageProps = {
   params: Promise<{ locale: string; slug: string }>;

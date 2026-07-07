@@ -1,3 +1,5 @@
+import "server-only";
+
 import path from "path";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");

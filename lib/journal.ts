@@ -2,7 +2,7 @@ import "server-only";
 
 import fs from "fs";
 import path from "path";
-import type { AppLocale } from "@/i18n/routing";
+import type { AppLocale } from "@/i18n/config";
 import { JOURNAL_DIR } from "@/lib/content-paths";
 import { JOURNAL_POSTS_PER_PAGE } from "@/lib/journal-constants";
 import { toJournalListEntry } from "@/lib/journal-display";

@@ -6,7 +6,7 @@ import {
   LOCALE_COOKIE,
   LOCALE_STORAGE_KEY,
   type AppLocale,
-} from "@/i18n/routing";
+} from "@/i18n/config";
 
 export default function LanguageSwitcher() {
   const locale = useLocale() as AppLocale;

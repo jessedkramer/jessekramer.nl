@@ -1,11 +1,17 @@
 import { defineRouting } from "next-intl/routing";
+import {
+  LOCALE_COOKIE,
+  LOCALE_STORAGE_KEY,
+  defaultLocale,
+  locales,
+  type AppLocale,
+} from "./config";
 
-export const LOCALE_STORAGE_KEY = "jessekramer.locale";
-export const LOCALE_COOKIE = "jessekramer.locale";
+export { LOCALE_COOKIE, LOCALE_STORAGE_KEY, type AppLocale };
 
 export const routing = defineRouting({
-  locales: ["nl", "en"],
-  defaultLocale: "nl",
+  locales: [...locales],
+  defaultLocale,
   localePrefix: "as-needed",
   localeDetection: false,
   localeCookie: {
@@ -13,5 +19,3 @@ export const routing = defineRouting({
     maxAge: 60 * 60 * 24 * 365,
   },
 });
-
-export type AppLocale = (typeof routing.locales)[number];

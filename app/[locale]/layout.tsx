@@ -7,6 +7,8 @@ import LocaleSync from "@/components/LocaleSync";
 import { routing, type AppLocale } from "@/i18n/routing";
 import "../globals.css";
 
+export const runtime = "nodejs";
+
 type LocaleLayoutProps = {
   children: ReactNode;
   params: Promise<{ locale: string }>;

@@ -4,7 +4,7 @@ import { formatJournalDate } from "@/lib/format";
 import { buildJournalCategoryLabels } from "@/lib/journal-categories";
 import { getPublishedJournalPosts } from "@/lib/journal";
 import { IconArrowRight, IconJournal } from "@/components/icons";
-import type { AppLocale } from "@/i18n/routing";
+import type { AppLocale } from "@/i18n/config";
 
 export default async function JournalCard() {
   const t = await getTranslations("journalCard");

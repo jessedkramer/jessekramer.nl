@@ -7,7 +7,7 @@ import {
   LOCALE_COOKIE,
   LOCALE_STORAGE_KEY,
   type AppLocale,
-} from "@/i18n/routing";
+} from "@/i18n/config";
 
 function isAppLocale(value: string | null): value is AppLocale {
   return value === "nl" || value === "en";

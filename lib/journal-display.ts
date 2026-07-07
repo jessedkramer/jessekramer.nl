@@ -1,4 +1,4 @@
-import type { AppLocale } from "@/i18n/routing";
+import type { AppLocale } from "@/i18n/config";
 import type { JournalListEntry, JournalPost } from "@/types/journal";
 
 export function localizeJournalPost(

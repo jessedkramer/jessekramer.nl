@@ -1,4 +1,4 @@
-import type { AppLocale } from "@/i18n/routing";
+import type { AppLocale } from "@/i18n/config";
 
 export function formatJournalDate(date: string, locale: AppLocale | string): string {
   const parsed = new Date(date);

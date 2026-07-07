@@ -4,9 +4,11 @@ import Footer from "@/components/Footer";
 import JournalIndex from "@/components/JournalIndex";
 import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
-import type { AppLocale } from "@/i18n/routing";
+import type { AppLocale } from "@/i18n/config";
 import { buildJournalCategoryLabels } from "@/lib/journal-categories";
 import { getJournalListEntries } from "@/lib/journal";
+
+export const runtime = "nodejs";
 
 type JournalIndexPageProps = {
   params: Promise<{ locale: string }>;
