@@ -34,6 +34,8 @@ Ook het logo is aangepast. Het oorspronkelijke idee moest herkenbaar blijven, ma
 
 De website is gebouwd met Next.js en gebruikt een file-based journal. Artikelen staan als Markdown-bestanden in de repository en worden automatisch door de site ingelezen. Daardoor heb ik geen apart CMS nodig om iets te publiceren.
 
+{{tweet:2073911293376082334}}
+
 De site is tweetalig opgezet. Nederlandse en Engelse teksten worden vanuit aparte vertaalbestanden geladen, terwijl journalartikelen beide talen in hetzelfde bestand kunnen bevatten. Dat houdt de structuur overzichtelijk, maar betekent ook dat wijzigingen op meerdere plekken consequent moeten worden doorgevoerd.
 
 De interface bestaat uit losse componenten, onder andere voor de currently-status, de journalweergave, mijn gemeenteraadsprofiel en de footer. Daardoor kan ik onderdelen later aanpassen zonder de hele pagina opnieuw te bouwen.
@@ -83,6 +85,8 @@ The logo changed as well. The original idea had to remain recognisable, but the 
 ## The technology behind it
 
 The website is built with Next.js and uses a file-based journal. Articles are stored as Markdown files in the repository and are automatically loaded by the site. This means I do not need a separate CMS to publish something new.
+
+{{tweet:2073911293376082334}}
 
 The website is bilingual. Dutch and English interface text is stored in translation files, while journal articles can contain both languages in a single file. The structure is simple, although changes often need to be applied consistently in several places.
 
