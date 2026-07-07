@@ -1,0 +1,28 @@
+---
+description: Accessibility and responsive standards for UI and styles
+globs: **/*.{tsx,css}
+alwaysApply: false
+---
+
+# Accessibility and Responsive Design
+
+## Accessibility first
+
+- Use semantic HTML: `header`, `main`, `section`, `article`, `nav`, `footer`.
+- Provide accessible names: `aria-label`, `aria-labelledby`, and meaningful link text.
+- Ensure interactive elements are keyboard reachable and have visible focus states.
+- Do not remove existing ARIA attributes when refactoring components.
+- Prefer real buttons and links over clickable divs.
+
+## Responsive first and mobile parity
+
+- Design and verify at desktop, tablet, and mobile breakpoints.
+- Preserve existing breakpoints and layout behavior in `app/globals.css`.
+- Mobile must receive the same content and hierarchy as desktop — not a reduced experience.
+- Test narrow widths (≤640px) and mid widths (≤1000px) before shipping UI changes.
+
+## CSS changes
+
+- Extend existing design tokens (`:root` variables) instead of introducing one-off colors.
+- Keep the fixed `.world` background layer intact behind all content.
+- Avoid changes that break `backdrop-filter`, grid proportions, or glass card styling.

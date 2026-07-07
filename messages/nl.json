@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "siteTitle": "Jesse Kramer",
+    "siteDescription": "Schoonheid vinden in de digitale wereld.",
+    "aboutTitle": "Over mij · Jesse Kramer",
+    "aboutDescription": "19-jarige IT-student uit Nederland met een passie voor technologie, software en digitaal design.",
+    "journalTitle": "Journal · Jesse Kramer",
+    "journalFallbackTitle": "Journal"
+  },
+  "header": {
+    "navLabel": "Hoofdnavigatie",
+    "home": "Home",
+    "about": "Over mij",
+    "journal": "Journal",
+    "contact": "Contact",
+    "brandLabel": "Jesse Kramer home"
+  },
+  "language": {
+    "label": "Taal",
+    "nl": "Nederlands",
+    "en": "English",
+    "switchToNl": "Schakel over naar Nederlands",
+    "switchToEn": "Switch to English"
+  },
+  "currently": {
+    "ariaLabel": "Live status",
+    "locationLabel": "Locatie",
+    "locationValue": "Urk, Nederland",
+    "nowPlayingLabel": "Nu aan het spelen",
+    "soundtrackLabel": "Soundtrack",
+    "trackTitle": "Purple Skyline",
+    "projectLabel": "Huidige bezigheid",
+    "projectValue": "jessekramer.nl bouwen",
+    "playMusic": "Purple Skyline-soundtrack afspelen",
+    "pauseMusic": "Purple Skyline-soundtrack pauzeren"
+  },
+  "home": {
+    "dashboardLabel": "Homepage dashboard"
+  },
+  "aboutCard": {
+    "title": "Over mij",
+    "paragraph1": "Ik ben Jesse Kramer, een 19-jarige IT-student uit Nederland met een passie voor technologie, software en digitaal design.",
+    "paragraph2": "Ik verken altijd nieuwe ideeën, bouw persoonlijke projecten en leer iets nieuws.",
+    "readMore": "Lees meer"
+  },
+  "aboutPage": {
+    "eyebrow": "Over mij",
+    "title": "Over mij",
+    "paragraph1": "Mijn naam is Jesse Kramer en ik ben een 19-jarige IT-student uit Nederland.",
+    "paragraph2": "Technologie is al zolang ik me kan herinneren een van mijn grootste interesses. Ik verken graag nieuwe software, bouw persoonlijke projecten en leer over de technologieën die de toekomst vormgeven. Kunstmatige intelligentie, webontwikkeling, user interface design en cloudtechnologieën zijn enkele van de gebieden die me het meest inspireren.",
+    "paragraph3": "Buiten technologie houd ik van reizen, nieuwe plekken ontdekken, fotografie, gamen en muziek. Ik ben gefascineerd door strak design en digitale ervaringen die niet alleen functioneel zijn, maar ook visueel aantrekkelijk. Die filosofie is terug te zien op deze website.",
+    "paragraph4": "Deze website is mijn digitale thuis—een plek waar ik projecten deel, schrijf over onderwerpen die me interesseren en mijn reis documenteer terwijl ik blijf leren en groeien.",
+    "paragraph5": "Vooruitkijkend hoop ik een carrière in IT op te bouwen waarin ik technologie, creativiteit en probleemoplossing combineer. Of dat nu als consultant, solution architect of aan innovatieve software is—mijn doel is technologie te maken die echt verschil maakt.",
+    "paragraph6": "Bedankt voor je bezoek aan mijn website."
+  },
+  "socialsCard": {
+    "title": "Socials & professioneel profiel",
+    "socialListLabel": "TheJessePost socials",
+    "linkedinBlockLabel": "Openbaar professioneel profiel",
+    "viewLinkedIn": "Bekijk LinkedIn",
+    "viewLinkedInAria": "Bekijk LinkedIn-profiel"
+  },
+  "socialLabels": {
+    "x": "X",
+    "steam": "Steam",
+    "github": "GitHub",
+    "email": "E-mail",
+    "linkedin": "LinkedIn"
+  },
+  "municipalityCard": {
+    "title": "Gemeenteraad Urk",
+    "description": "Ik ben commissielid in de gemeenteraad van Urk.",
+    "profileAria": "Bekijk officieel Gemeenteraad Urk-profiel"
+  },
+  "xCard": {
+    "title": "Live van X",
+    "viewOnX": "Bekijk op X"
+  },
+  "xEmbed": {
+    "wipTitle": "Work in progress",
+    "wipCopy": "Live feed van {handle} komt binnenkort."
+  },
+  "journalCard": {
+    "title": "Journal",
+    "allArticles": "Alle artikelen",
+    "emptyTitle": "Nog geen gepubliceerde artikelen.",
+    "emptyHintBefore": "Voeg een Markdown-bestand toe aan",
+    "emptyHintAfter": "met",
+    "emptyHintEnd": "om te beginnen."
+  },
+  "journalPage": {
+    "eyebrow": "Journal",
+    "title": "Langere teksten. Lees in je eigen tempo.",
+    "lead": "Een verzameling artikelen, ervaringen, inzichten en ideeën over alles wat mij inspireert.",
+    "emptyTitle": "Nog geen gepubliceerde artikelen.",
+    "emptyHintBefore": "Voeg een Markdown-bestand toe aan",
+    "emptyHintAfter": "met",
+    "emptyHintEnd": "om te beginnen.",
+    "backToAll": "← Alle artikelen",
+    "toolbarLabel": "Artikelen zoeken en filteren",
+    "searchLabel": "Artikelen zoeken",
+    "searchPlaceholder": "Zoek op titel, onderwerp of categorie…",
+    "categoryLabel": "Filter op categorie",
+    "allCategories": "Alles",
+    "resultsCount": "{count, plural, one {# artikel} other {# artikelen}}",
+    "noResultsTitle": "Geen artikelen gevonden voor deze filters.",
+    "noResultsHint": "Probeer een andere zoekterm of kies een andere categorie.",
+    "paginationLabel": "Journal-paginering",
+    "previousPage": "Vorige",
+    "nextPage": "Volgende"
+  },
+  "journalCategories": {
+    "personal": "Persoonlijk",
+    "technology": "Technologie",
+    "design": "Design",
+    "travel": "Reizen",
+    "politics": "Politiek",
+    "gaming": "Gaming"
+  },
+  "footer": {
+    "slogan": "<highlight>Schoonheid</highlight> vinden in de digitale wereld.",
+    "copyright": "© 2026 Jesse Kramer. Alle rechten voorbehouden.",
+    "emailMe": "Mail me"
+  }
+}

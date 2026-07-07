@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "siteTitle": "Jesse Kramer",
+    "siteDescription": "Finding beauty in the digital world.",
+    "aboutTitle": "About · Jesse Kramer",
+    "aboutDescription": "19-year-old IT student from the Netherlands with a passion for technology, software and digital design.",
+    "journalTitle": "Journal · Jesse Kramer",
+    "journalFallbackTitle": "Journal"
+  },
+  "header": {
+    "navLabel": "Main navigation",
+    "home": "Home",
+    "about": "About",
+    "journal": "Journal",
+    "contact": "Contact",
+    "brandLabel": "Jesse Kramer home"
+  },
+  "language": {
+    "label": "Language",
+    "nl": "Nederlands",
+    "en": "English",
+    "switchToNl": "Switch to Dutch",
+    "switchToEn": "Switch to English"
+  },
+  "currently": {
+    "ariaLabel": "Live status",
+    "locationLabel": "Location",
+    "locationValue": "Urk, Netherlands",
+    "nowPlayingLabel": "Now playing",
+    "soundtrackLabel": "Soundtrack",
+    "trackTitle": "Purple Skyline",
+    "projectLabel": "Current focus",
+    "projectValue": "Building jessekramer.nl",
+    "playMusic": "Play Purple Skyline soundtrack",
+    "pauseMusic": "Pause Purple Skyline soundtrack"
+  },
+  "home": {
+    "dashboardLabel": "Homepage dashboard"
+  },
+  "aboutCard": {
+    "title": "About",
+    "paragraph1": "I'm Jesse Kramer, a 19-year-old IT student from the Netherlands with a passion for technology, software and digital design.",
+    "paragraph2": "I'm always exploring new ideas, building personal projects and learning something new.",
+    "readMore": "Read more"
+  },
+  "aboutPage": {
+    "eyebrow": "About",
+    "title": "About me",
+    "paragraph1": "My name is Jesse Kramer, and I'm a 19-year-old IT student from the Netherlands.",
+    "paragraph2": "Technology has been one of my biggest interests for as long as I can remember. I enjoy exploring new software, building personal projects and learning about the technologies shaping the future. Artificial intelligence, web development, user interface design and cloud technologies are some of the areas that inspire me the most.",
+    "paragraph3": "Outside of technology, I enjoy travelling, discovering new places, photography, gaming and music. I'm fascinated by clean design and digital experiences that are not only functional, but also visually appealing. That philosophy is reflected throughout this website.",
+    "paragraph4": "This website serves as my digital home—a place where I share projects, write about topics that interest me and document my journey as I continue to learn and grow.",
+    "paragraph5": "Looking ahead, I hope to build a career in IT where I can combine technology, creativity and problem-solving. Whether that's as a consultant, solution architect or working on innovative software, my goal is to create technology that makes a real difference.",
+    "paragraph6": "Thank you for visiting my website."
+  },
+  "socialsCard": {
+    "title": "Socials & Professional Profile",
+    "socialListLabel": "TheJessePost socials",
+    "linkedinBlockLabel": "Public professional profile",
+    "viewLinkedIn": "View LinkedIn",
+    "viewLinkedInAria": "View LinkedIn profile"
+  },
+  "socialLabels": {
+    "x": "X",
+    "steam": "Steam",
+    "github": "GitHub",
+    "email": "Email",
+    "linkedin": "LinkedIn"
+  },
+  "municipalityCard": {
+    "title": "Municipal council of Urk",
+    "description": "I am a committee member in the municipal council of Urk.",
+    "profileAria": "View official Municipal Council Urk profile"
+  },
+  "xCard": {
+    "title": "Live from X",
+    "viewOnX": "View on X"
+  },
+  "xEmbed": {
+    "wipTitle": "Work in progress",
+    "wipCopy": "Live feed from {handle} coming soon."
+  },
+  "journalCard": {
+    "title": "Journal",
+    "allArticles": "All articles",
+    "emptyTitle": "No published articles yet.",
+    "emptyHintBefore": "Add a Markdown file to",
+    "emptyHintAfter": "with",
+    "emptyHintEnd": "to get started."
+  },
+  "journalPage": {
+    "eyebrow": "Journal",
+    "title": "Long-form writing. Read at your pace.",
+    "lead": "A collection of articles, experiences, insights, and ideas about everything that inspires me.",
+    "emptyTitle": "No published articles yet.",
+    "emptyHintBefore": "Add a Markdown file to",
+    "emptyHintAfter": "with",
+    "emptyHintEnd": "to get started.",
+    "backToAll": "← All articles",
+    "toolbarLabel": "Search and filter articles",
+    "searchLabel": "Search articles",
+    "searchPlaceholder": "Search by title, topic, or category…",
+    "categoryLabel": "Filter by category",
+    "allCategories": "All",
+    "resultsCount": "{count, plural, one {# article} other {# articles}}",
+    "noResultsTitle": "No articles match your filters.",
+    "noResultsHint": "Try another search term or choose a different category.",
+    "paginationLabel": "Journal pagination",
+    "previousPage": "Previous",
+    "nextPage": "Next"
+  },
+  "journalCategories": {
+    "personal": "Personal",
+    "technology": "Technology",
+    "design": "Design",
+    "travel": "Travel",
+    "politics": "Politics",
+    "gaming": "Gaming"
+  },
+  "footer": {
+    "slogan": "Finding <highlight>beauty</highlight> in the digital world.",
+    "copyright": "© 2026 Jesse Kramer. All rights reserved.",
+    "emailMe": "Email me"
+  }
+}

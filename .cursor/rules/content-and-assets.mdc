@@ -1,0 +1,26 @@
+---
+description: Content, journal, and public asset conventions
+globs: content/**/*,public/**/*
+alwaysApply: false
+---
+
+# Content and Assets
+
+## Journal content
+
+- Journal posts live in `content/journal/` as Markdown or MDX (when introduced).
+- GitHub remains the source of truth for public content.
+- Keep writing tone calm, personal, and professional where public role is referenced.
+
+## Public assets
+
+- Images go in `public/images/`.
+- Icons go in `public/icons/`.
+- Fonts go in `public/fonts/`.
+- Reference assets with root-relative paths: `/images/...`, `/icons/...`, `/fonts/...`.
+
+## Do not
+
+- Commit secrets, private drafts, or brain-repository material.
+- Replace placeholder public content with lorem ipsum or unrelated copy.
+- Add heavy image assets without optimizing for web use.

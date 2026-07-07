@@ -1,0 +1,26 @@
+---
+description: Core project principles for jessekramer.nl
+alwaysApply: true
+---
+
+# jessekramer.nl — Core Principles
+
+This is a personal digital experience, not a generic portfolio. Every change must strengthen calm identity and atmosphere.
+
+## Design language
+
+- Preserve the locked visual direction: dark purple evening city, cinematic skyline, liquid glass widgets, breathing room.
+- Never redesign layout, colors, typography, or atmosphere without explicit approval.
+- Visual consistency over clever code. If a change risks the look, do not ship it.
+
+## Privacy and content
+
+- Never add private notes, strategy, credentials, API keys, `.env` values, or sensitive personal context to this public repository.
+- Private AI context belongs in a separate private repository, not here.
+- Never remove existing public content (copy, links, sections, metadata) unless explicitly requested.
+
+## Scope discipline
+
+- Do not add features, widgets, or sections that were not requested.
+- Avoid unnecessary animations, noisy UI, and generic portfolio patterns.
+- Read `ARCHITECTURE.md` before structural or content changes.

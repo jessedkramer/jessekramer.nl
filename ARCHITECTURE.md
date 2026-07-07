@@ -29,15 +29,14 @@ This repository contains the public website.
 It may include:
 
 ```text
-index.html
-styles.css
-vercel.json
 README.md
 ARCHITECTURE.md
-content/
-public/
-assets/
+app/
 components/
+content/
+lib/
+public/
+types/
 ```
 
 It should not include private notes, personal strategy, sensitive AI context, private planning or deep personal memory.
@@ -67,25 +66,11 @@ The public repository is the website. The private repository is the creative mem
 
 ## Current technical setup
 
-Version 1 starts as a static website.
+Version 1 runs on Next.js with a component-based homepage, file-based journal content and Vercel deployment.
 
 ```text
 GitHub → Vercel → jessekramer.nl
 ```
-
-This keeps the foundation simple while the design and workflow are still being shaped.
-
-Later versions may migrate to:
-
-```text
-Next.js
-MDX
-TypeScript
-Tailwind CSS
-Vercel
-```
-
-The migration should only happen when it clearly improves maintainability, content handling or the AI-native CMS workflow.
 
 ## Homepage structure v1
 
@@ -119,15 +104,15 @@ The website should feel like TheJessePost translated into Jesse Kramer as a pers
 
 Core visual rules:
 
-- dark purple evening city
-- cinematic skyline
-- water and reflections
-- calm futuristic atmosphere
+- cosmic purple atmosphere
+- deep layered background with subtle motion
+- calm futuristic editorial mood
 - liquid glass widgets
+- SpaceX-like clarity with X.com readability
 - no heavy cyberpunk overload
 - no generic portfolio look
 - enough breathing room
-- the hero world continues behind the widgets and footer
+- the cosmic world continues behind the widgets and footer
 - Jesse Kramer is the brand, not TheJessePost
 
 TheJessePost appears only as part of the social identity, not as the website brand.
@@ -137,16 +122,16 @@ TheJessePost appears only as part of the social identity, not as the website bra
 Header content:
 
 ```text
-Jesse Kramer
 Home
 Over mij
-Socials
+Jesse Kramer (centered wordmark)
 Journal
 Contact
-Gemeenteraad Urk
 ```
 
 The Jesse Kramer wordmark should visually match the handwritten `J.` style from the hoodie/fav icon direction.
+
+The Gemeenteraad Urk link lives in the municipality widget only, not in the header.
 
 ## Currently system
 
@@ -205,7 +190,7 @@ It exists to acknowledge Jesse's official public role, not to turn the website i
 
 Rules:
 
-- header button stays visible on desktop
+- header button removed from v1 header
 - widget stays small
 - no party branding
 - no campaign language
@@ -215,7 +200,16 @@ Rules:
 
 The Journal is for longer writing.
 
-It should eventually be Markdown/MDX driven.
+It is Markdown/MDX driven from `content/journal/` with frontmatter:
+
+```text
+title
+date
+category
+excerpt
+cover (optional)
+published
+```
 
 Possible content:
 
@@ -230,11 +224,13 @@ The Journal is not a traditional WordPress blog and should not feel like a news 
 
 ## Live from X
 
-The Live from X widget should eventually use an official X embed where possible.
+The Live from X widget uses the official X embedded timeline for @TheJessePost where possible.
 
 Rules:
 
 - show current activity from @TheJessePost
+- no fake sample tweets or engagement numbers
+- if the embed cannot load, show a polished fallback with a link to the profile
 - no duplicate `Show more on X` button if `View on X` already exists
 - keep the widget visually integrated in the liquid glass style
 

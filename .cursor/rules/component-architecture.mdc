@@ -1,0 +1,40 @@
+---
+description: Component-first architecture for React/Next.js code
+globs: **/*.{tsx,ts}
+alwaysApply: false
+---
+
+# Component Architecture
+
+## Structure
+
+- Keep the homepage and future pages composed from small, focused components in `components/`.
+- Extract shared UI into reusable components before duplicating markup.
+- Put shared logic in `lib/` and shared TypeScript shapes in `types/`.
+- Keep `app/` thin: routing, layout, metadata, and page composition only.
+
+## Conventions
+
+- Prefer Server Components unless client interactivity is required.
+- Preserve existing CSS class names when migrating or refactoring markup.
+- Do not introduce new styling systems (e.g. Tailwind) without approval.
+- Match existing naming, file layout, and composition patterns in the repo.
+
+## Examples
+
+```tsx
+// ❌ BAD — monolithic page with duplicated card markup
+export default function Page() {
+  return <main>{/* 200 lines of repeated card HTML */}</main>;
+}
+
+// ✅ GOOD — composed from existing section components
+export default function Page() {
+  return (
+    <main className="page-shell">
+      <Hero />
+      <AboutCard />
+    </main>
+  );
+}
+```
