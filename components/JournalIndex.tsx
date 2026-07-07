@@ -219,7 +219,7 @@ export default function JournalIndex({
               {pagePosts.map((post) => (
                 <Link
                   key={post.slug}
-                  className="card journal-index-item"
+                  className="journal-index-item"
                   href={`/journal/${post.slug}`}
                 >
                   <p className="journal-index-meta">
