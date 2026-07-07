@@ -5,7 +5,7 @@ date: 2026-07-07
 category: technology
 excerpt: Over het idee achter mijn nieuwe website, de technische tegenslagen en de zoektocht naar een ontwerp dat echt als van mij voelt.
 excerptEn: About the idea behind my new website, the technical setbacks, and the search for a design that genuinely feels like mine.
-published: true
+published: false
 ---
 
 Een persoonlijke website klinkt eenvoudig: wat informatie over jezelf, een paar links en een nette achtergrond. De nieuwe versie van jessekramer.nl werd uiteindelijk veel meer dan dat. Het werd een plek waar techniek, design en mijn digitale identiteit samenkomen.
