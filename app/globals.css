@@ -1750,7 +1750,8 @@ button:focus-visible {
     min-height: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: clamp(6px, 1.2vh, 16px);
   }
 
   .home:not(.journal-page):not(.about-page) .home-stage .footer {
@@ -1940,29 +1941,34 @@ button:focus-visible {
   }
 
   .dashboard {
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr) minmax(0, 0.68fr);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.84fr);
     grid-template-rows: auto;
     align-items: start;
-    gap: 16px;
+    gap: 18px;
+    width: 100%;
   }
 
   .dashboard-col--left {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     grid-column: 1;
     grid-row: 1;
     align-self: start;
     min-width: 0;
+    width: 100%;
   }
 
   .dashboard-col--center {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     grid-column: 2;
     grid-row: 1;
     align-self: start;
     min-width: 0;
+    width: 100%;
   }
 
   .dashboard-col--right {
@@ -1972,37 +1978,74 @@ button:focus-visible {
     grid-row: 1;
     align-self: start;
     min-width: 0;
+    width: 100%;
+  }
+
+  .dashboard-col--left .about-card,
+  .dashboard-col--left .municipality-card,
+  .dashboard-col--center .socials-card,
+  .dashboard-col--right .journal-card {
+    width: 100%;
+  }
+
+  .dashboard .about-card > h2,
+  .dashboard .socials-card > h2,
+  .dashboard .journal-card__header {
+    min-height: 2.35rem;
+    align-items: flex-start;
+  }
+
+  .dashboard .socials-card > h2 {
+    line-height: 1.25;
   }
 
   .about-card {
-    align-self: start;
+    align-self: stretch;
     gap: 10px;
   }
 
   .socials-card {
     display: flex;
     flex-direction: column;
-    align-self: start;
+    align-self: stretch;
   }
 
   .socials-layout {
     margin-top: 10px;
     flex: none;
     min-height: 0;
-    align-items: start;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .social-list,
+  .linkedin-block {
+    min-width: 0;
   }
 
   .journal-card {
     display: flex;
     flex-direction: column;
-    align-self: start;
+    align-self: stretch;
     max-height: none;
     overflow: hidden;
     min-height: 0;
   }
 
+  .journal-card__title-wrap h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .journal-item-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .municipality-card {
-    align-self: start;
+    align-self: stretch;
     width: 100%;
   }
 
@@ -2055,10 +2098,6 @@ button:focus-visible {
   .section-top .text-link {
     font-size: clamp(.62rem, .66vw, .7rem);
     opacity: .88;
-  }
-
-  .socials-layout {
-    margin-top: 8px;
   }
 
   .social-list {
