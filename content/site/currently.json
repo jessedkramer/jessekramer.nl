@@ -8,14 +8,8 @@
       "id": "location",
       "type": "link",
       "icon": "📍",
-      "label": {
-        "nl": "Huidige locatie",
-        "en": "Current location"
-      },
-      "value": {
-        "nl": "Urk, Nederland",
-        "en": "Urk, Netherlands"
-      },
+      "label": {"nl": "Huidige locatie","en": "Current location"},
+      "value": {"nl": "Urk, Nederland","en": "Urk, Netherlands"},
       "href": "https://grokipedia.com/page/Urk",
       "external": true
     },
@@ -23,32 +17,17 @@
       "id": "soundtrack",
       "type": "soundtrack",
       "mobileOnly": true,
-      "label": {
-        "nl": "Huidige soundtrack",
-        "en": "Current soundtrack"
-      },
-      "playingLabel": {
-        "nl": "Nu aan het spelen",
-        "en": "Now playing"
-      },
-      "trackTitle": {
-        "nl": "Purple Skyline",
-        "en": "Purple Skyline"
-      }
+      "label": {"nl": "Huidige soundtrack","en": "Current soundtrack"},
+      "playingLabel": {"nl": "Nu aan het spelen","en": "Now playing"},
+      "trackTitle": {"nl": "Purple Skyline","en": "Purple Skyline"}
     },
     {
       "id": "project",
       "type": "link",
       "icon": "✨",
-      "label": {
-        "nl": "Huidige bezigheid",
-        "en": "Current focus"
-      },
-      "value": {
-        "nl": "RoddelPraat kijken",
-        "en": "Watching RoddelPraat"
-      },
-      "href": "https://www.youtube.com/@RoddelPraat/videos",
+      "label": {"nl": "Huidige bezigheid","en": "Current focus"},
+      "value": {"nl": "Suits kijken op Netflix","en": "Watching Suits on Netflix"},
+      "href": "https://www.netflix.com/title/70195800",
       "external": true
     }
   ]
