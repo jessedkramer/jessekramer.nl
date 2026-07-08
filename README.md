@@ -61,7 +61,6 @@ npm run build              # Production build
 | [AGENTS.md](./AGENTS.md) | Rules for AI assistants (start here for AI) |
 | [CONTENT.md](./CONTENT.md) | Content operations manual |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | System design & principles |
-| [ARCHITECTURE-REPORT.md](./ARCHITECTURE-REPORT.md) | CMS 2.0 review & scores |
 | [features/](./features/) | Per-feature registry |
 
 ## Locales

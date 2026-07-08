@@ -333,5 +333,4 @@ Pattern: `content/<feature>/` + loader in `lib/` + route in `app/` + entry in `f
 | [CONTENT.md](./CONTENT.md) | Detailed content workflows |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | System design, design principles |
 | [ABOUT.md](./ABOUT.md) | Project story for humans |
-| [ARCHITECTURE-REPORT.md](./ARCHITECTURE-REPORT.md) | CMS 2.0 review & scores |
 | [features/](./features/) | Specific feature reference |
