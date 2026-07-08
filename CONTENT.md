@@ -122,10 +122,27 @@ Add/edit/remove categories here. Filters and labels update automatically. Catego
 
 English mode shows an article only if it has an English body after `---en---`. `titleEn` alone is not enough.
 
-### Delete article
+### Lifecycle (publishable content)
 
-1. Delete `content/journal/{slug}.md`
-2. Update any links in `content/site/currently.json` or other content pointing to that slug
+```text
+Draft → Published → Archived → Trash → Permanent delete
+```
+
+| State | How |
+|-------|-----|
+| **Draft** | `published: false` in `content/journal/` |
+| **Published** | `published: true` in `content/journal/` |
+| **Archived** | Move file to `content/journal/_archived/` |
+| **Trash** | Move file to `content/journal/_trash/` (hidden, restorable) |
+| **Restore** | `git mv` back to `content/journal/` |
+| **Permanent delete** | Delete file from `_trash/` |
+
+See `content/contract.json` and [features/lifecycle.md](./features/lifecycle.md).
+
+### Retire article (preferred over hard delete)
+
+1. `git mv content/journal/{slug}.md content/journal/_trash/`
+2. Update links in `content/site/currently.json` if needed
 3. Run `npm run validate:content`
 
 ---

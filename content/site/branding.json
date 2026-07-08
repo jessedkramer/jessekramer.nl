@@ -27,6 +27,12 @@
       "nl": "Schoonheid vinden in de digitale wereld.",
       "en": "Finding beauty in the digital world."
     },
-    "titleSuffix": "· Jesse Kramer"
+    "titleSuffix": "· Jesse Kramer",
+    "siteUrl": "https://jessekramer.nl",
+    "ogImage": "/images/background.png",
+    "twitter": {
+      "card": "summary_large_image",
+      "site": "@jessekramer"
+    }
   }
 }

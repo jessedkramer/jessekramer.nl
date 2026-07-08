@@ -6,15 +6,18 @@ import SiteHeader from "@/components/SiteHeader";
 import WorldBackground from "@/components/WorldBackground";
 import type { AppLocale } from "@/i18n/config";
 import { getAboutPageContent, getBrandingForLocale } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export async function aboutMetadata(locale: AppLocale): Promise<Metadata> {
   const branding = getBrandingForLocale(locale);
   const about = getAboutPageContent(locale);
 
-  return {
+  return buildPageMetadata({
+    locale,
     title: `${about.title} ${branding.metadata.titleSuffix}`,
     description: about.paragraphs[0] ?? branding.metadata.description,
-  };
+    path: "/about",
+  });
 }
 
 export async function AboutPage({ locale }: { locale: AppLocale }) {

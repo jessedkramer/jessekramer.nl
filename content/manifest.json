@@ -1,0 +1,73 @@
+{
+  "version": "2.0",
+  "description": "Machine-readable registry for AI assistants and validation tooling.",
+  "sourceOfTruth": "GitHub",
+  "deployment": "Vercel",
+  "locales": ["nl", "en"],
+  "defaultLocale": "nl",
+  "siteFiles": [
+    "content/site/branding.json",
+    "content/site/links.json",
+    "content/site/navigation.json",
+    "content/site/footer.json",
+    "content/site/currently.json",
+    "content/site/socials.json",
+    "content/site/homepage.json",
+    "content/site/widgets/about.json",
+    "content/site/widgets/journal.json",
+    "content/site/widgets/municipality.json",
+    "content/journal/categories.json"
+  ],
+  "contentTypes": {
+    "configuration": {
+      "editable": true,
+      "lifecycle": false,
+      "paths": [
+        "content/site/*.json",
+        "content/site/widgets/*.json",
+        "config/site.config.ts"
+      ]
+    },
+    "journal": {
+      "editable": true,
+      "lifecycle": true,
+      "format": "markdown",
+      "paths": {
+        "active": "content/journal",
+        "archived": "content/journal/_archived",
+        "trash": "content/journal/_trash",
+        "template": "content/journal/_example.md"
+      },
+      "categories": "content/journal/categories.json",
+      "operations": [
+        "publish",
+        "draft",
+        "archive",
+        "trash",
+        "restore",
+        "permanent-delete",
+        "edit-metadata",
+        "change-category",
+        "bulk-update"
+      ]
+    },
+    "media": {
+      "editable": true,
+      "lifecycle": false,
+      "paths": ["public/images", "public/audio", "public/icons", "public/fonts"]
+    },
+    "uiChrome": {
+      "editable": true,
+      "lifecycle": false,
+      "paths": ["messages/nl.json", "messages/en.json"],
+      "note": "UI labels only — not visitor-facing page copy."
+    }
+  },
+  "aiEntryPoints": [
+    "AGENTS.md",
+    "content/manifest.json",
+    "content/contract.json",
+    "CONTENT.md",
+    "features/README.md"
+  ]
+}

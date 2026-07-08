@@ -1,0 +1,68 @@
+{
+  "version": "2.0",
+  "description": "Content contract describing publishable and configuration content shapes.",
+  "publishableContentTypes": {
+    "journalArticle": {
+      "storage": "markdown",
+      "locations": {
+        "draftOrPublished": "content/journal/{slug}.md",
+        "archived": "content/journal/_archived/{slug}.md",
+        "trash": "content/journal/_trash/{slug}.md"
+      },
+      "lifecycle": ["draft", "published", "archived", "trash"],
+      "requiredFrontmatter": ["title", "date", "category"],
+      "optionalFrontmatter": [
+        "titleEn",
+        "excerpt",
+        "excerptEn",
+        "cover",
+        "published",
+        "status",
+        "canonical",
+        "updatedDate",
+        "tags"
+      ],
+      "localization": {
+        "defaultLocaleBody": "markdown before ---en---",
+        "englishBody": "markdown after ---en--- delimiter"
+      },
+      "visibilityRules": {
+        "published": "Listed and routable when in active folder with published: true or status: published",
+        "draft": "Hidden when published: false or status: draft",
+        "archived": "Hidden; file lives in _archived/",
+        "trash": "Hidden; file lives in _trash/; restorable via git mv"
+      },
+      "categorySource": "content/journal/categories.json"
+    }
+  },
+  "configurationContentTypes": {
+    "branding": { "path": "content/site/branding.json", "localized": true },
+    "links": { "path": "content/site/links.json", "localized": false },
+    "navigation": { "path": "content/site/navigation.json", "localized": true },
+    "footer": { "path": "content/site/footer.json", "localized": true },
+    "currently": { "path": "content/site/currently.json", "localized": true },
+    "socials": { "path": "content/site/socials.json", "localized": true },
+    "homepage": { "path": "content/site/homepage.json", "localized": true },
+    "aboutWidget": { "path": "content/site/widgets/about.json", "localized": true },
+    "journalWidget": { "path": "content/site/widgets/journal.json", "localized": true },
+    "municipalityWidget": { "path": "content/site/widgets/municipality.json", "localized": true }
+  },
+  "validation": {
+    "script": "scripts/validate-content.mjs",
+    "npmScript": "validate:content"
+  },
+  "futureLifecycleStates": {
+    "planned": ["review", "hidden"],
+    "note": "Documented for roadmap; not implemented in v2.0 runtime."
+  },
+  "futurePlatformFeatures": {
+    "planned": [
+      "aiAuditLog",
+      "versionHistory",
+      "rollback",
+      "aiPermissions",
+      "publicationHistory"
+    ],
+    "note": "Git history remains the audit trail until dedicated systems are built."
+  }
+}

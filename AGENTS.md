@@ -20,6 +20,8 @@ A new AI assistant should be productive within minutes by reading this file, the
 
 ```text
 content/          Visitor-facing data (AI edits freely)
+content/manifest.json   Machine-readable registry (read first)
+content/contract.json   Content contract & lifecycle rules
 config/           Runtime behavior, not copy
 public/           Media assets
 app/              Next.js routes (application)
@@ -45,7 +47,7 @@ features/         Feature registry
 | `config/**` | Pagination, audio behavior, locale settings |
 | `public/**` | Images, audio, icons, fonts |
 | `features/**` | Feature documentation |
-| `AGENTS.md`, `CONTENT.md`, `ARCHITECTURE.md`, `README.md` | Documentation |
+| `AGENTS.md`, `CONTENT.md`, `ARCHITECTURE.md`, `README.md`, `ABOUT.md` | Documentation |
 
 ### Edit only when explicitly asked
 
@@ -82,7 +84,10 @@ content/site/
 
 content/journal/
   categories.json     Category definitions
-  *.md                Articles (one file per slug)
+  *.md                Active articles (draft or published)
+  _archived/*.md      Archived (hidden from site)
+  _trash/*.md         Trash (hidden, restorable)
+  _example.md         Template (excluded from site)
 
 config/site.config.ts   postsPerPage, audio settings
 
@@ -128,6 +133,31 @@ If copy appears on the website for visitors to read, it belongs in `content/`, n
 
 ---
 
+## Registry-first workflow
+
+1. Read `AGENTS.md` (this file)
+2. Read `content/manifest.json` for paths and content types
+3. Read `content/contract.json` for lifecycle and schema rules
+4. Read `CONTENT.md` for operational steps
+5. Read relevant `features/*.md`
+6. Edit content files
+7. Run `npm run validate:content`
+
+For journal bulk operations, use manifest paths — do not scan the entire repository:
+
+| Operation | Action |
+|-----------|--------|
+| Publish | `content/journal/{slug}.md` with `published: true` |
+| Draft | `published: false` in active folder |
+| Archive | `git mv content/journal/{slug}.md content/journal/_archived/` |
+| Trash | `git mv content/journal/{slug}.md content/journal/_trash/` |
+| Restore | `git mv` from `_archived/` or `_trash/` back to `content/journal/` |
+| Permanent delete | Remove file from `_trash/` |
+
+Use `getJournalInventory()` in `lib/journal.ts` for a full programmatic inventory (all lifecycle states).
+
+---
+
 ## Journal workflow
 
 1. Copy `content/journal/_example.md` → `content/journal/your-slug.md`
@@ -137,9 +167,34 @@ If copy appears on the website for visitors to read, it belongs in `content/`, n
 5. Category key must exist in `content/journal/categories.json`
 6. Run `npm run validate:content`
 
-**Drafts:** `published: false` or filename prefix `_`
+**Drafts:** `published: false`, `status: draft`, or filename prefix `_` (templates only)
+
+**Lifecycle folders:** `_archived/` and `_trash/` hide content from the site.
 
 **English visibility:** English mode requires an English body after `---en---`. Title alone is not enough.
+
+---
+
+## SEO
+
+- Defaults: `content/site/branding.json` → `metadata.siteUrl`, `ogImage`, `twitter`
+- Helpers: `lib/seo/metadata.ts`
+- Auto routes: `app/sitemap.ts`, `app/robots.ts`
+
+---
+
+## AI Capability Matrix
+
+| Capability | Supported | How |
+|------------|-----------|-----|
+| Edit site copy | ✅ | `content/site/*.json` |
+| Edit config | ✅ | `config/site.config.ts` |
+| Publish / draft journal | ✅ | `content/journal/{slug}.md` |
+| Archive / trash / restore | ✅ | `_archived/`, `_trash/` + git mv |
+| Bulk journal ops | ✅ | Manifest paths |
+| SEO metadata | ✅ | `branding.json` + frontmatter |
+| Add homepage widget | ⚠️ | JSON + React component |
+| Review queue / audit UI | ❌ | Roadmap (Git today) |
 
 ---
 
@@ -160,15 +215,19 @@ Content JSON uses `{ "nl": "...", "en": "..." }`. Routes use parallel trees: `ap
 npm run validate:content
 ```
 
-Checks:
+Checks (v2.0):
 
-- Required content files exist and parse as JSON
-- Journal categories: no duplicate IDs, valid category keys in articles
-- Journal slugs: no duplicate filenames
+- Required files from `content/manifest.json`
+- Journal categories: duplicate IDs, unknown category keys
+- Journal slugs: duplicate across lifecycle folders
+- Lifecycle consistency (status vs folder location)
 - `hrefKey` references resolve in `links.json`
-- Homepage widgets: known IDs in layout and mobileOrder
-- Currently bar: valid internal/external hrefs
-- Incomplete `nl`/`en` localization (warning)
+- Homepage widget layout consistency
+- Currently bar href validity
+- SEO: siteUrl, ogImage, descriptions (warnings)
+- Broken internal journal links, missing images, missing alt text (warnings)
+- Privacy-sensitive patterns (warnings)
+- Incomplete `nl`/`en` localization (warnings)
 
 Run after every significant content change.
 
@@ -273,5 +332,6 @@ Pattern: `content/<feature>/` + loader in `lib/` + route in `app/` + entry in `f
 |------|--------------|
 | [CONTENT.md](./CONTENT.md) | Detailed content workflows |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | System design, design principles |
-| [README.md](./README.md) | Developer quick start |
+| [ABOUT.md](./ABOUT.md) | Project story for humans |
+| [ARCHITECTURE-REPORT.md](./ARCHITECTURE-REPORT.md) | CMS 2.0 review & scores |
 | [features/](./features/) | Specific feature reference |

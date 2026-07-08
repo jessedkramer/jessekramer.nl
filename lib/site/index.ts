@@ -91,6 +91,9 @@ export function getBrandingForLocale(locale: AppLocale) {
       title: pickLocalized(branding.metadata.title, locale),
       description: pickLocalized(branding.metadata.description, locale),
       titleSuffix: branding.metadata.titleSuffix,
+      siteUrl: branding.metadata.siteUrl,
+      ogImage: branding.metadata.ogImage,
+      twitter: branding.metadata.twitter,
     },
   };
 }

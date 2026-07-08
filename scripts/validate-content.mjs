@@ -1,97 +1,90 @@
 #!/usr/bin/env node
 /**
- * Validates content/config integrity for jessekramer.nl.
- * Run with: npm run validate:content
+ * Content validation for jessekramer.nl (v2.0).
+ * Registry-first: reads content/manifest.json as the source of required files.
  */
 
 import fs from "node:fs";
 import path from "node:path";
+import {
+  collectLocalizedWarnings,
+  extractInternalLinks,
+  extractMarkdownImages,
+  fileExists,
+  listJournalArticles,
+  parseFrontmatter,
+  PRIVACY_PATTERNS,
+  readJson,
+  resolveJournalStatus,
+} from "./lib/content-utils.mjs";
 
 const root = process.cwd();
 const errors = [];
 const warnings = [];
 
-function readJson(relativePath) {
-  const filePath = path.join(root, relativePath);
-  if (!fs.existsSync(filePath)) {
-    errors.push(`Missing file: ${relativePath}`);
-    return null;
-  }
-
-  try {
-    return JSON.parse(fs.readFileSync(filePath, "utf8"));
-  } catch (error) {
-    errors.push(`Invalid JSON in ${relativePath}: ${error.message}`);
-    return null;
-  }
+function pushError(message) {
+  errors.push(message);
 }
 
-function listMarkdownArticles() {
-  const journalDir = path.join(root, "content/journal");
-  if (!fs.existsSync(journalDir)) {
-    errors.push("Missing directory: content/journal");
-    return [];
-  }
-
-  return fs
-    .readdirSync(journalDir)
-    .filter((file) => /\.(md|mdx)$/i.test(file) && !file.startsWith("_"));
+function pushWarning(message) {
+  warnings.push(message);
 }
 
 function assertHrefKey(relativePath, context, hrefKey, links) {
   if (!hrefKey) return;
   if (!links?.[hrefKey]) {
-    errors.push(`${relativePath}: ${context} references unknown hrefKey "${hrefKey}"`);
+    pushError(`${relativePath}: ${context} references unknown hrefKey "${hrefKey}"`);
   }
 }
 
-function collectLocalizedWarnings(relativePath, value, pathParts = []) {
-  if (value && typeof value === "object" && !Array.isArray(value)) {
-    if ("nl" in value || "en" in value) {
-      if (!value.nl || !value.en) {
-        warnings.push(
-          `${relativePath}: incomplete localization at ${pathParts.join(".") || "(root)"}`,
-        );
-      }
-      return;
-    }
+const manifestResult = readJson(root, "content/manifest.json");
+if (manifestResult.error) pushError(manifestResult.error);
+const manifest = manifestResult.data;
 
-    for (const [key, nested] of Object.entries(value)) {
-      collectLocalizedWarnings(relativePath, nested, [...pathParts, key]);
-    }
-  }
-}
+const contractResult = readJson(root, "content/contract.json");
+if (contractResult.error) pushWarning(contractResult.error);
 
-const requiredSiteFiles = [
-  "content/site/branding.json",
-  "content/site/links.json",
-  "content/site/navigation.json",
-  "content/site/footer.json",
-  "content/site/currently.json",
-  "content/site/socials.json",
-  "content/site/homepage.json",
-  "content/site/widgets/about.json",
-  "content/site/widgets/journal.json",
-  "content/site/widgets/municipality.json",
-  "content/journal/categories.json",
-];
+const requiredSiteFiles = manifest?.siteFiles ?? [];
+const jsonCache = new Map();
 
 for (const file of requiredSiteFiles) {
-  readJson(file);
+  const result = readJson(root, file);
+  if (result.error) pushError(result.error);
+  else jsonCache.set(file, result.data);
 }
 
-const links = readJson("content/site/links.json");
-const categories = readJson("content/journal/categories.json");
-const homepage = readJson("content/site/homepage.json");
-const currently = readJson("content/site/currently.json");
-const navigation = readJson("content/site/navigation.json");
-const socials = readJson("content/site/socials.json");
-const municipality = readJson("content/site/widgets/municipality.json");
+const links = jsonCache.get("content/site/links.json");
+const categories = jsonCache.get("content/journal/categories.json");
+const homepage = jsonCache.get("content/site/homepage.json");
+const currently = jsonCache.get("content/site/currently.json");
+const navigation = jsonCache.get("content/site/navigation.json");
+const socials = jsonCache.get("content/site/socials.json");
+const municipality = jsonCache.get("content/site/widgets/municipality.json");
+const branding = jsonCache.get("content/site/branding.json");
 
 for (const file of requiredSiteFiles) {
-  const data = readJson(file);
+  const data = jsonCache.get(file);
   if (file !== "content/site/links.json" && data) {
-    collectLocalizedWarnings(file, data);
+    for (const warning of collectLocalizedWarnings(file, data)) {
+      pushWarning(warning);
+    }
+  }
+}
+
+if (branding?.metadata) {
+  if (!branding.metadata.siteUrl) {
+    pushWarning("content/site/branding.json: missing metadata.siteUrl");
+  }
+  if (!branding.metadata.description?.nl || !branding.metadata.description?.en) {
+    pushWarning("content/site/branding.json: missing SEO description for one or more locales");
+  }
+  if (!branding.metadata.ogImage) {
+    pushWarning("content/site/branding.json: missing metadata.ogImage");
+  } else if (!fileExists(root, branding.metadata.ogImage.replace(/^\//, "public/"))) {
+    pushWarning(`content/site/branding.json: ogImage not found at public${branding.metadata.ogImage}`);
+  }
+  if (!branding.metadata.twitter?.card) {
+    pushWarning("content/site/branding.json: missing metadata.twitter.card");
   }
 }
 
@@ -99,36 +92,92 @@ if (categories?.categories) {
   const ids = categories.categories.map((category) => category.id);
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
   if (duplicateIds.length > 0) {
-    errors.push(`Duplicate journal category ids: ${duplicateIds.join(", ")}`);
+    pushError(`Duplicate journal category ids: ${duplicateIds.join(", ")}`);
   }
 
   const categorySet = new Set(ids);
-  const slugs = listMarkdownArticles().map((file) => file.replace(/\.(md|mdx)$/i, ""));
+  const articles = manifest ? listJournalArticles(root, manifest) : [];
+  const slugs = articles.map((article) => article.slug);
   const duplicateSlugs = slugs.filter((slug, index) => slugs.indexOf(slug) !== index);
   if (duplicateSlugs.length > 0) {
-    errors.push(`Duplicate journal slugs: ${duplicateSlugs.join(", ")}`);
+    pushError(`Duplicate journal slugs across lifecycle folders: ${duplicateSlugs.join(", ")}`);
   }
 
-  for (const file of listMarkdownArticles()) {
-    const raw = fs.readFileSync(path.join(root, "content/journal", file), "utf8");
-    const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-    if (!match) {
-      warnings.push(`${file}: missing frontmatter`);
+  const publishedSlugs = new Set(
+    articles
+      .filter((article) => {
+        const raw = fs.readFileSync(article.absolutePath, "utf8");
+        const { data } = parseFrontmatter(raw);
+        return resolveJournalStatus(article.location, data) === "published";
+      })
+      .map((article) => article.slug),
+  );
+
+  for (const article of articles) {
+    const raw = fs.readFileSync(article.absolutePath, "utf8");
+    const { data, content, contentEn } = parseFrontmatter(raw);
+    const status = resolveJournalStatus(article.location, data);
+    const label = article.filePath;
+
+    if (!raw.match(/^---\r?\n[\s\S]*?\r?\n---/)) {
+      pushWarning(`${label}: missing frontmatter`);
       continue;
     }
 
-    const categoryLine = match[1]
-      .split("\n")
-      .find((line) => line.startsWith("category:"));
-
-    if (!categoryLine) {
-      warnings.push(`${file}: missing category in frontmatter`);
-      continue;
+    if (!data.title) pushWarning(`${label}: missing title in frontmatter`);
+    if (!data.date) pushWarning(`${label}: missing date in frontmatter`);
+    if (!data.category) {
+      pushWarning(`${label}: missing category in frontmatter`);
+    } else if (!categorySet.has(data.category)) {
+      pushError(`${label}: unknown category "${data.category}"`);
     }
 
-    const category = categoryLine.split(":").slice(1).join(":").trim();
-    if (!categorySet.has(category)) {
-      errors.push(`${file}: unknown category "${category}"`);
+    if (status === "published" && article.location !== "active") {
+      pushWarning(`${label}: lifecycle mismatch — published status outside active folder`);
+    }
+    if ((status === "archived" || status === "trash") && article.location === "active") {
+      pushWarning(`${label}: status "${status}" should use _${status === "trash" ? "trash" : "archived"}/ folder`);
+    }
+    if (status === "published" && !content.trim()) {
+      pushWarning(`${label}: published article has empty body`);
+    }
+    if ((data.titleEn || data.excerptEn) && !contentEn.trim()) {
+      pushWarning(`${label}: English metadata without ---en--- body`);
+    }
+    if (status === "published" && article.location === "active" && !data.excerpt && !content.trim()) {
+      pushWarning(`${label}: missing SEO description/excerpt`);
+    }
+    if (data.cover && !fileExists(root, data.cover.replace(/^\//, "public/"))) {
+      pushWarning(`${label}: cover image not found at public${data.cover}`);
+    }
+
+    for (const image of extractMarkdownImages(content + contentEn)) {
+      if (image.src.startsWith("http")) continue;
+      if (!image.src.startsWith("/")) {
+        pushWarning(`${label}: relative image path should start with / (${image.src})`);
+        continue;
+      }
+      if (!fileExists(root, image.src.replace(/^\//, "public/"))) {
+        pushWarning(`${label}: missing referenced image public${image.src}`);
+      }
+      if (!image.alt?.trim()) {
+        pushWarning(`${label}: image missing alt text (${image.src})`);
+      }
+    }
+
+    for (const link of extractInternalLinks(content + contentEn)) {
+      if (!link.href.startsWith("/journal/")) continue;
+      const linkedSlug = link.href.replace(/^\/journal\//, "").replace(/\/$/, "");
+      if (!publishedSlugs.has(linkedSlug)) {
+        pushWarning(`${label}: broken internal journal link ${link.href}`);
+      }
+    }
+
+    for (const pattern of PRIVACY_PATTERNS) {
+      if (pattern.test(raw)) {
+        pushWarning(`${label}: potential privacy-sensitive content detected`);
+        break;
+      }
     }
   }
 }
@@ -144,26 +193,26 @@ if (homepage?.widgets) {
     for (const widgetId of column.widgets ?? []) {
       layoutIds.add(widgetId);
       if (!knownIds.has(widgetId)) {
-        errors.push(`Homepage column "${column.id}" references unknown widget "${widgetId}"`);
+        pushError(`Homepage column "${column.id}" references unknown widget "${widgetId}"`);
       }
     }
   }
 
   for (const widgetId of enabledIds) {
     if (!layoutIds.has(widgetId)) {
-      warnings.push(`Enabled homepage widget "${widgetId}" is not placed in desktop layout`);
+      pushWarning(`Enabled homepage widget "${widgetId}" is not placed in desktop layout`);
     }
   }
 
   for (const widgetId of homepage.layout?.mobileOrder ?? []) {
     if (!knownIds.has(widgetId)) {
-      errors.push(`Homepage mobileOrder references unknown widget "${widgetId}"`);
+      pushError(`Homepage mobileOrder references unknown widget "${widgetId}"`);
     }
   }
 
   for (const widgetId of enabledIds) {
     if (!(homepage.layout?.mobileOrder ?? []).includes(widgetId)) {
-      warnings.push(`Enabled homepage widget "${widgetId}" is missing from mobileOrder`);
+      pushWarning(`Enabled homepage widget "${widgetId}" is missing from mobileOrder`);
     }
   }
 }
@@ -194,15 +243,24 @@ if (currently?.segments) {
     if (segment.type !== "link" || !segment.href) continue;
 
     if (segment.internal && !segment.href.startsWith("/")) {
-      errors.push(`Currently segment "${segment.id}" internal href must start with "/"`);
+      pushError(`Currently segment "${segment.id}" internal href must start with "/"`);
     }
 
     if (!segment.internal && !segment.external && !segment.href.startsWith("/")) {
       if (!/^https?:\/\//.test(segment.href)) {
-        errors.push(`Currently segment "${segment.id}" has invalid external href "${segment.href}"`);
+        pushError(`Currently segment "${segment.id}" has invalid external href "${segment.href}"`);
       }
     }
   }
+}
+
+if (branding?.logo?.src && !fileExists(root, branding.logo.src.replace(/^\//, "public/"))) {
+  pushWarning(`content/site/branding.json: logo not found at public${branding.logo.src}`);
+}
+
+const audioSrc = "public/audio/purple-skyline.mp3";
+if (!fileExists(root, audioSrc)) {
+  pushWarning("Missing soundtrack file public/audio/purple-skyline.mp3");
 }
 
 if (warnings.length > 0) {

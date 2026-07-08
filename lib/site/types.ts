@@ -17,6 +17,12 @@ export type BrandingContent = {
     title: LocalizedString;
     description: LocalizedString;
     titleSuffix: string;
+    siteUrl: string;
+    ogImage: string;
+    twitter?: {
+      card?: "summary" | "summary_large_image";
+      site?: string;
+    };
   };
 };
 

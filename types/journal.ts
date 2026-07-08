@@ -1,5 +1,9 @@
 export type JournalCategory = string;
 
+export type JournalLifecycleStatus = "draft" | "published" | "archived" | "trash";
+
+export type JournalStorageLocation = "active" | "archived" | "trash";
+
 export type JournalFrontmatter = {
   title: string;
   titleEn?: string;
@@ -8,7 +12,8 @@ export type JournalFrontmatter = {
   excerpt?: string;
   excerptEn?: string;
   cover?: string;
-  published: boolean;
+  published?: boolean;
+  status?: JournalLifecycleStatus;
   draft?: boolean;
   featured?: boolean;
   pinned?: boolean;
@@ -23,6 +28,7 @@ export type JournalPost = JournalFrontmatter & {
   slug: string;
   content: string;
   contentEn?: string;
+  status: JournalLifecycleStatus;
 };
 
 export type JournalListEntry = {
@@ -34,4 +40,14 @@ export type JournalListEntry = {
   excerpt?: string;
 };
 
-export type JournalLifecycleStatus = "draft" | "published" | "archived";
+export type JournalInventoryEntry = {
+  slug: string;
+  fileName: string;
+  location: "active" | "archived" | "trash";
+  status: JournalLifecycleStatus;
+  title?: string;
+  date?: string;
+  category?: string;
+  published?: boolean;
+  hasEnglishBody?: boolean;
+};

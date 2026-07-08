@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import LocaleSync from "@/components/LocaleSync";
 import type { AppLocale } from "@/i18n/config";
-import { getBrandingForLocale } from "@/lib/site";
+import { buildSiteMetadata } from "@/lib/seo/metadata";
 import "@/app/globals.css";
 
 export const localeViewport: Viewport = {
@@ -13,17 +13,8 @@ export const localeViewport: Viewport = {
   themeColor: "#12021f",
 };
 
-export async function createLocaleMetadata(locale: AppLocale): Promise<Metadata> {
-  const branding = getBrandingForLocale(locale);
-
-  return {
-    title: branding.metadata.title,
-    description: branding.metadata.description,
-    openGraph: {
-      title: branding.metadata.title,
-      description: branding.metadata.description,
-    },
-  };
+export async function createLocaleMetadata(locale: AppLocale) {
+  return buildSiteMetadata(locale);
 }
 
 type LocaleDocumentProps = {

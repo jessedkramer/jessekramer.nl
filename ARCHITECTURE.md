@@ -34,6 +34,8 @@ New features follow one rule: code lives in `app/` and `components/`; visitor-fa
 
 | Data | Source file |
 |------|-------------|
+| AI registry | `content/manifest.json` |
+| Content contract | `content/contract.json` |
 | Outbound URLs | `content/site/links.json` |
 | Navigation | `content/site/navigation.json` |
 | Footer | `content/site/footer.json` |
@@ -42,7 +44,45 @@ New features follow one rule: code lives in `app/` and `components/`; visitor-fa
 | Widget copy | `content/site/widgets/*.json`, `socials.json` |
 | Branding / SEO | `content/site/branding.json` |
 | Journal categories | `content/journal/categories.json` |
-| Journal articles | `content/journal/*.md` |
+| Journal articles (active) | `content/journal/*.md` |
+| Journal archived | `content/journal/_archived/*.md` |
+| Journal trash | `content/journal/_trash/*.md` |
+
+## Journal lifecycle
+
+Publishable content only:
+
+```text
+Draft → Published → Archived → Trash → Permanent delete
+```
+
+| State | Location | Visible on site |
+|-------|----------|-----------------|
+| Draft | `content/journal/` + `published: false` | No |
+| Published | `content/journal/` + `published: true` | Yes |
+| Archived | `content/journal/_archived/` | No |
+| Trash | `content/journal/_trash/` | No |
+
+Restore via `git mv`. Permanent delete removes the file from `_trash/`.
+
+Configuration content (widgets, branding, nav) has **no lifecycle** — edit JSON directly.
+
+## SEO
+
+| Component | Location |
+|-----------|----------|
+| Site defaults | `content/site/branding.json` |
+| Metadata builder | `lib/seo/metadata.ts` |
+| Sitemap | `app/sitemap.ts` |
+| Robots | `app/robots.ts` |
+
+Canonical URLs, Open Graph, Twitter cards, and locale alternates (nl/en) are generated per page.
+
+## Domains
+
+Canonical: `https://jessekramer.nl` (non-www).  
+Redirect: `www.jessekramer.nl` → `jessekramer.nl` in `next.config.ts`.  
+Both hostnames must point to Vercel in DNS — no extra repo config needed.
 
 ## Content loading
 
@@ -63,15 +103,19 @@ Journal English visibility requires an English body after the `---en---` delimit
 
 ## Validation
 
-`scripts/validate-content.mjs` checks:
+`scripts/validate-content.mjs` (v2.0) reads `content/manifest.json` and checks:
 
 - Required content files exist and parse as JSON
+- Journal lifecycle consistency and duplicate slugs across folders
 - Journal categories: duplicate IDs, unknown category keys in articles
-- Journal slugs: duplicate filenames
 - `hrefKey` references in navigation, socials, municipality
 - Homepage widget layout consistency (desktop columns + `mobileOrder`)
 - Currently bar href validity
+- SEO metadata and asset existence (warnings)
+- Broken internal links, missing alt text (warnings)
 - Incomplete `nl`/`en` localization (warnings)
+
+Utilities: `scripts/lib/content-utils.mjs`
 
 Run via `npm run validate:content`.
 

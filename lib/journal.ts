@@ -3,21 +3,32 @@ import "server-only";
 import fs from "fs";
 import path from "path";
 import type { AppLocale } from "@/i18n/config";
-import { JOURNAL_DIR } from "@/lib/content/paths";
+import {
+  JOURNAL_ARCHIVED_DIR,
+  JOURNAL_DIR,
+  JOURNAL_LIFECYCLE_DIRS,
+  JOURNAL_TRASH_DIR,
+} from "@/lib/content/paths";
 import { toJournalListEntry } from "@/lib/journal-display";
+import {
+  isPublishedJournalStatus,
+  resolveJournalStatus,
+} from "@/lib/journal/lifecycle";
 import {
   getOrderedJournalCategoryIds,
   isValidJournalCategory,
 } from "@/lib/journal/categories";
 import type {
-  JournalCategory,
   JournalFrontmatter,
+  JournalInventoryEntry,
   JournalListEntry,
   JournalPost,
+  JournalStorageLocation,
 } from "@/types/journal";
+
 const EN_CONTENT_DELIMITER = "\n---en---\n";
 
-export function hasEnglishBody(post: JournalPost): boolean {
+export function hasEnglishBody(post: Pick<JournalPost, "contentEn">): boolean {
   return Boolean(post.contentEn?.trim());
 }
 
@@ -38,22 +49,6 @@ function getVisibleJournalPosts(locale: AppLocale): JournalPost[] {
   );
 }
 
-/**
- * Add a journal article as a Markdown file in content/journal/.
- *
- * Example frontmatter:
- * ---
- * title: Artikel titel
- * titleEn: Article title
- * date: 2026-07-06
- * category: technology
- * excerpt: Korte samenvatting.
- * excerptEn: Short summary.
- * published: true
- * ---
- *
- * Optional English body after `---en---` in the file.
- */
 function parseFrontmatter(raw: string): {
   data: Partial<JournalFrontmatter>;
   content: string;
@@ -77,13 +72,20 @@ function parseFrontmatter(raw: string): {
       continue;
     }
 
+    if (key === "status") {
+      data.status = value as JournalFrontmatter["status"];
+      continue;
+    }
+
     if (key === "title") data.title = value;
     if (key === "titleEn") data.titleEn = value;
     if (key === "date") data.date = value;
-    if (key === "category") data.category = value as JournalCategory;
+    if (key === "category") data.category = value;
     if (key === "excerpt") data.excerpt = value;
     if (key === "excerptEn") data.excerptEn = value;
     if (key === "cover") data.cover = value;
+    if (key === "canonical") data.canonical = value;
+    if (key === "updatedDate") data.updatedDate = value;
   }
 
   return { data, content: match[2].trim() };
@@ -105,19 +107,79 @@ function splitLocalizedContent(rawContent: string): {
   };
 }
 
-function readJournalFile(fileName: string): JournalPost | null {
+function listJournalFilesInDir(
+  directory: string,
+  location: JournalStorageLocation,
+): Array<{ fileName: string; location: JournalStorageLocation }> {
+  if (!fs.existsSync(directory)) return [];
+
+  return fs
+    .readdirSync(directory, { withFileTypes: true })
+    .filter(
+      (entry) =>
+        entry.isFile() &&
+        /\.(md|mdx)$/i.test(entry.name) &&
+        !entry.name.startsWith("_"),
+    )
+    .map((entry) => ({ fileName: entry.name, location }));
+}
+
+function listAllJournalFiles(): Array<{
+  fileName: string;
+  location: JournalStorageLocation;
+}> {
+  const activeFiles = listJournalFilesInDir(JOURNAL_DIR, "active").filter(
+    ({ fileName }) => {
+      const fullPath = path.join(JOURNAL_DIR, fileName);
+      return fs.statSync(fullPath).isFile();
+    },
+  );
+
+  return [
+    ...activeFiles,
+    ...listJournalFilesInDir(JOURNAL_ARCHIVED_DIR, "archived"),
+    ...listJournalFilesInDir(JOURNAL_TRASH_DIR, "trash"),
+  ];
+}
+
+function readJournalRawFile(
+  fileName: string,
+  location: JournalStorageLocation,
+): {
+  slug: string;
+  data: Partial<JournalFrontmatter>;
+  content: string;
+  contentEn?: string;
+  location: JournalStorageLocation;
+} | null {
+  const directory = JOURNAL_LIFECYCLE_DIRS[location];
+  const filePath = path.join(directory, fileName);
+  if (!fs.existsSync(filePath)) return null;
+
   const slug = fileName.replace(/\.(md|mdx)$/i, "");
-  const filePath = path.join(JOURNAL_DIR, fileName);
   const raw = fs.readFileSync(filePath, "utf8");
   const { data, content: rawContent } = parseFrontmatter(raw);
   const { content, contentEn } = splitLocalizedContent(rawContent);
+
+  return { slug, data, content, contentEn, location };
+}
+
+function readJournalFile(
+  fileName: string,
+  location: JournalStorageLocation,
+): JournalPost | null {
+  const parsed = readJournalRawFile(fileName, location);
+  if (!parsed) return null;
+
+  const { slug, data, content, contentEn, location: fileLocation } = parsed;
+  const status = resolveJournalStatus(fileLocation, data);
 
   if (
     !data.title ||
     !data.date ||
     !data.category ||
     !isValidJournalCategory(data.category) ||
-    data.published !== true
+    !isPublishedJournalStatus(fileLocation, status)
   ) {
     return null;
   }
@@ -131,28 +193,52 @@ function readJournalFile(fileName: string): JournalPost | null {
     excerpt: data.excerpt,
     excerptEn: data.excerptEn,
     cover: data.cover,
+    canonical: data.canonical,
+    updatedDate: data.updatedDate,
     published: true,
+    status,
     content,
     contentEn,
   };
 }
 
 export function getAllJournalPosts(): JournalPost[] {
-  if (!fs.existsSync(JOURNAL_DIR)) return [];
-
-  return fs
-    .readdirSync(JOURNAL_DIR)
-    .filter((file) => /\.(md|mdx)$/i.test(file) && !file.startsWith("_"))
-    .map(readJournalFile)
+  return listJournalFilesInDir(JOURNAL_DIR, "active")
+    .map(({ fileName, location }) => readJournalFile(fileName, location))
     .filter((post): post is JournalPost => post !== null)
     .sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     );
 }
 
+export function getJournalInventory(): JournalInventoryEntry[] {
+  const entries: JournalInventoryEntry[] = [];
+
+  for (const { fileName, location } of listAllJournalFiles()) {
+    const parsed = readJournalRawFile(fileName, location);
+    if (!parsed) continue;
+
+    const status = resolveJournalStatus(location, parsed.data);
+
+    entries.push({
+      slug: parsed.slug,
+      fileName,
+      location,
+      status,
+      title: parsed.data.title,
+      date: parsed.data.date,
+      category: parsed.data.category,
+      published: parsed.data.published,
+      hasEnglishBody: Boolean(parsed.contentEn?.trim()),
+    });
+  }
+
+  return entries.sort((a, b) => a.slug.localeCompare(b.slug));
+}
+
 export function getJournalListEntries(
   locale: AppLocale,
-  categoryLabels: Record<JournalCategory, string>,
+  categoryLabels: Record<string, string>,
 ): JournalListEntry[] {
   return getVisibleJournalPosts(locale).map((post) =>
     toJournalListEntry(post, locale, categoryLabels[post.category]),
@@ -161,7 +247,7 @@ export function getJournalListEntries(
 
 export function getPublishedJournalPosts(
   locale: AppLocale,
-  categoryLabels: Record<JournalCategory, string>,
+  categoryLabels: Record<string, string>,
   limit?: number,
 ): JournalListEntry[] {
   const posts = getJournalListEntries(locale, categoryLabels);
@@ -173,7 +259,7 @@ export function getJournalPost(slug: string): JournalPost | null {
     const fileName = `${slug}.${extension}`;
     const filePath = path.join(JOURNAL_DIR, fileName);
     if (fs.existsSync(filePath)) {
-      return readJournalFile(fileName);
+      return readJournalFile(fileName, "active");
     }
   }
 
@@ -188,6 +274,8 @@ export function getJournalSlugsForLocale(locale: AppLocale): string[] {
   return getVisibleJournalPosts(locale).map((post) => post.slug);
 }
 
-export function getJournalCategoryKeys(): JournalCategory[] {
+export function getJournalCategoryKeys(): string[] {
   return getOrderedJournalCategoryIds();
 }
+
+export { JOURNAL_LIFECYCLE_DIRS };

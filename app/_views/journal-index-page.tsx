@@ -9,6 +9,7 @@ import type { AppLocale } from "@/i18n/config";
 import { buildJournalCategoryLabels, getOrderedJournalCategoryIds } from "@/lib/journal/categories";
 import { getJournalListEntries } from "@/lib/journal";
 import { getBrandingForLocale, getJournalPageContent } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 type JournalIndexPageProps = {
   locale: AppLocale;
@@ -23,10 +24,12 @@ export async function journalIndexMetadata(locale: AppLocale): Promise<Metadata>
   const branding = getBrandingForLocale(locale);
   const page = getJournalPageContent(locale);
 
-  return {
+  return buildPageMetadata({
+    locale,
     title: `${page.eyebrow} ${branding.metadata.titleSuffix}`,
     description: page.lead,
-  };
+    path: "/journal",
+  });
 }
 
 export async function JournalIndexPage({

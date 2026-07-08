@@ -12,6 +12,7 @@ import { formatJournalDate } from "@/lib/format";
 import { localizeJournalPost } from "@/lib/journal-display";
 import { buildJournalCategoryLabels } from "@/lib/journal/categories";
 import { getBrandingForLocale } from "@/lib/site";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import {
   getJournalPost,
   isJournalPostVisibleInLocale,
@@ -36,10 +37,16 @@ export async function journalArticleMetadata({
 
   const localized = localizeJournalPost(post, locale);
 
-  return {
+  return buildPageMetadata({
+    locale,
     title: `${localized.title} ${branding.metadata.titleSuffix}`,
     description: localized.excerpt ?? localized.title,
-  };
+    path: `/journal/${slug}`,
+    ogImage: post.cover ?? branding.metadata.ogImage,
+    type: "article",
+    publishedTime: post.date,
+    modifiedTime: post.updatedDate ?? post.date,
+  });
 }
 
 export async function JournalArticlePage({ locale, slug }: JournalArticlePageProps) {
