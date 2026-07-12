@@ -24,10 +24,10 @@
     {
       "id": "project",
       "type": "link",
-      "icon": "✨",
+      "icon": "📺",
       "label": {"nl": "Huidige bezigheid","en": "Current focus"},
-      "value": {"nl": "Suits kijken op Netflix","en": "Watching Suits on Netflix"},
-      "href": "https://www.netflix.com/title/70195800",
+      "value": {"nl": "TV kijken","en": "Watching TV"},
+      "href": "https://nl.wikipedia.org/wiki/Televisie",
       "external": true
     }
   ]
