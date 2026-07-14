@@ -120,6 +120,15 @@ export type AboutWidgetContent = {
     eyebrow: LocalizedString;
     title: LocalizedString;
     paragraphs: LocalizedString[];
+    sections: Array<{
+      id: string;
+      title: LocalizedString;
+      paragraphs: LocalizedString[];
+      vision?: {
+        title: LocalizedString;
+        text: LocalizedString;
+      };
+    }>;
   };
 };
 
