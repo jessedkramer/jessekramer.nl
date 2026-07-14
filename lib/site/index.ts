@@ -114,6 +114,7 @@ export function getAboutPageContent(locale: AppLocale) {
   return {
     eyebrow: pickLocalized(about.page.eyebrow, locale),
     title: pickLocalized(about.page.title, locale),
+    introTitle: pickLocalized(about.page.introTitle, locale),
     paragraphs: pickLocalizedList(about.page.paragraphs, locale),
     sections: about.page.sections.map((section) => ({
       id: section.id,
