@@ -10,6 +10,7 @@
   "page": {
     "eyebrow": { "nl": "Over mij", "en": "About" },
     "title": { "nl": "Over mij", "en": "About me" },
+    "introTitle": { "nl": "Introductie", "en": "Introduction" },
     "paragraphs": [
       {
         "nl": "Ik ben Jesse Kramer, 19 jaar oud, en opgegroeid op Urk. Naast mijn mbo 4-opleiding ICT System Engineer ben ik actief in de lokale politiek als commissielid voor Forum voor Democratie in de commissie Wonen, Werken en Veiligheid van de gemeente Urk.",
