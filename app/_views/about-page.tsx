@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import Footer from "@/components/Footer";
@@ -37,21 +36,10 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
             <p className="content-eyebrow">{content.eyebrow}</p>
             <h1>{content.title}</h1>
 
-            <div className={styles.introLayout}>
-              <div className={`journal-content ${styles.intro}`}>
-                {content.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-
-              <Image
-                className={styles.portrait}
-                src="/images/jesse-kramer-about.jpg"
-                alt={locale === "nl" ? "Portret van Jesse Kramer" : "Portrait of Jesse Kramer"}
-                width={266}
-                height={268}
-                priority
-              />
+            <div className={`journal-content ${styles.intro}`}>
+              {content.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
 
             <div className={styles.sections}>
