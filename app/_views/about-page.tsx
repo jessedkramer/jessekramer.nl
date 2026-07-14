@@ -34,7 +34,7 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
         <main className="page-shell content-page">
           <article className="card journal-article about-article">
             <p className="content-eyebrow">{content.eyebrow}</p>
-            <h1>{content.title}</h1>
+            <h1>{content.introTitle}</h1>
 
             <div className={`journal-content ${styles.intro}`}>
               {content.paragraphs.map((paragraph) => (
