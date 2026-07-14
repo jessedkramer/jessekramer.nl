@@ -2,8 +2,8 @@
   "card": {
     "title": { "nl": "Over mij", "en": "About" },
     "paragraphs": [
-      { "nl": "Hoi, ik ben Jesse Kramer.", "en": "Hi, I'm Jesse Kramer." },
-      { "nl": "Ik zal hier binnenkort meer neerzetten.", "en": "I'll add more here soon." }
+      { "nl": "Ik ben Jesse Kramer, 19 jaar oud, en opgegroeid op Urk.", "en": "I'm Jesse Kramer, 19 years old, and I grew up in Urk." },
+      { "nl": "Lees meer over mijn opleiding, politieke werk en vrije tijd.", "en": "Read more about my education, political work and free time." }
     ],
     "readMoreHref": "/about"
   },
@@ -11,8 +11,86 @@
     "eyebrow": { "nl": "Over mij", "en": "About" },
     "title": { "nl": "Over mij", "en": "About me" },
     "paragraphs": [
-      { "nl": "Hoi, ik ben Jesse Kramer.", "en": "Hi, I'm Jesse Kramer." },
-      { "nl": "Ik zal hier binnenkort meer neerzetten.", "en": "I'll add more here soon." }
+      {
+        "nl": "Ik ben Jesse Kramer, 19 jaar oud, en opgegroeid op Urk. Naast mijn mbo 4-opleiding ICT System Engineer ben ik actief in de lokale politiek als commissielid voor Forum voor Democratie in de commissie Wonen, Werken en Veiligheid van de gemeente Urk.",
+        "en": "I'm Jesse Kramer, 19 years old, and I grew up in Urk. Alongside my level 4 vocational programme in ICT System Engineering, I am active in local politics as a committee member for Forum for Democracy on the Housing, Work and Safety committee of the Municipality of Urk."
+      },
+      {
+        "nl": "Naast mijn opleiding en politieke werkzaamheden houd ik van reizen, wandelen en muziek uit de jaren '80. Ook geniet ik van een goede serie of game en vind ik het leuk om nieuwe steden en plekken te ontdekken.",
+        "en": "Alongside my education and political work, I enjoy travelling, walking and music from the 1980s. I also enjoy a good series or game and like discovering new cities and places."
+      },
+      {
+        "nl": "Via deze pagina vertel ik meer over mijn opleiding, mijn politieke werk, mijn visie en wat ik in mijn vrije tijd graag doe.",
+        "en": "On this page, I share more about my education, political work, vision and what I enjoy doing in my free time."
+      }
+    ],
+    "sections": [
+      {
+        "id": "education",
+        "title": { "nl": "Opleiding", "en": "Education" },
+        "paragraphs": [
+          {
+            "nl": "School is nooit echt mijn favoriete plek geweest. Op de basisschool en later op het vmbo was ik vaak degene die uit het raam zat te kijken en helemaal opging in mijn eigen gedachten. Ik volgde de vmbo Basisberoepsgerichte leerweg in de richting Economie & Ondernemen. Die periode heb ik nooit als prettig ervaren, maar ik behaalde uiteindelijk wel mijn diploma.",
+            "en": "School was never really my favourite place. In primary school and later in secondary school, I was often the one looking out of the window and getting lost in my own thoughts. I followed the basic vocational track in Economics & Entrepreneurship. I never really enjoyed that period, but I did complete my diploma."
+          },
+          {
+            "nl": "Na het vmbo wist ik dat ik graag verder wilde in de ICT. Mijn voorkeur ging uit naar een mbo-opleiding op niveau 4, maar met een vmbo Basis-diploma kon je destijds normaal gesproken alleen doorstromen naar niveau 2. Omdat er geen niveau 2-opleiding in de richting van ICT beschikbaar was, schreef ik een motivatiebrief om toegelaten te worden tot de niveau 3-opleiding Allround Medewerker IT Systems and Devices. Dat verzoek werd goedgekeurd en twee jaar later behaalde ik mijn mbo niveau 3-diploma.",
+            "en": "After secondary school, I knew I wanted to continue in ICT. My preference was a level 4 vocational programme, but with my diploma the usual route was level 2. Because there was no suitable level 2 ICT programme available at the time, I wrote a motivation letter to be admitted to the level 3 All-round IT Systems and Devices programme. My request was accepted and two years later I completed my level 3 diploma."
+          },
+          {
+            "nl": "Tijdens mijn opleiding werd ik vicevoorzitter van de studentenraad van Firda Emmeloord/Urk. Hierdoor kreeg ik de kans om mee te denken over het onderwijs en de belangen van studenten te vertegenwoordigen.",
+            "en": "During my programme, I became vice-chair of the student council at Firda Emmeloord/Urk. This gave me the opportunity to contribute ideas about education and represent students' interests."
+          },
+          {
+            "nl": "Na het behalen van mijn mbo niveau 3-diploma ben ik direct doorgestroomd naar de opleiding ICT System Engineer op mbo niveau 4, waar ik momenteel nog mee bezig ben. Daarna hoop ik door te stromen naar het hbo. Welke opleiding dat precies wordt weet ik nog niet, maar op dit moment spreken HBO-ICT, Bestuurskunde en opleidingen die techniek en bestuur combineren mij het meest aan.",
+            "en": "After completing my level 3 diploma, I moved directly into the level 4 ICT System Engineer programme, which I am currently following. Afterwards, I hope to continue into higher professional education. I have not yet decided on the exact programme, but ICT, Public Administration and programmes that combine technology and governance currently appeal to me most."
+          }
+        ]
+      },
+      {
+        "id": "politics",
+        "title": { "nl": "Politiek", "en": "Politics" },
+        "paragraphs": [
+          {
+            "nl": "Ik weet nog goed dat ik, een paar maanden voordat corona begon, aan de keukentafel vroeg wat een zetel eigenlijk was. Ik was toen 12 jaar oud en begon steeds meer interesse te krijgen in de geschiedenis van Nederland en Europa. Vanaf dat moment wilde ik er steeds meer over weten en verdiepte ik mij in onderwerpen als geschiedenis, politiek en bestuur.",
+            "en": "I still clearly remember asking at the kitchen table, a few months before the coronavirus period began, what a parliamentary seat actually was. I was 12 years old and becoming increasingly interested in the history of the Netherlands and Europe. From that moment on, I wanted to know more and started exploring subjects such as history, politics and government."
+          },
+          {
+            "nl": "Toen ik 13 jaar was begon de coronaperiode. De maatregelen, de maatschappelijke discussie en de politieke debatten zorgden ervoor dat mijn interesse alleen maar verder groeide. Ik begon regelmatig debatten te volgen, waaronder die van Thierry Baudet, en deed voor het eerst een kieswijzer. Grappig genoeg kwam ik toen al uit bij Forum voor Democratie.",
+            "en": "When I was 13, the coronavirus period began. The measures, public debate and political discussions only increased my interest. I started regularly following debates, including those involving Thierry Baudet, and completed a voting guide for the first time. Interestingly enough, Forum for Democracy was already my closest match."
+          },
+          {
+            "nl": "Tijdens mijn puberteit ontwikkelden mijn politieke ideeën en visie zich steeds verder. Ik was meer met politiek bezig dan de meeste leeftijdsgenoten, volgde verkiezingen op de voet en werd uiteindelijk lid van Forum voor Democratie. Rond de gemeenteraadsverkiezingen van 2022 volgde ik de lokale verkiezingen al met veel belangstelling.",
+            "en": "During my teenage years, my political ideas and vision continued to develop. I was more engaged with politics than most people my age, followed elections closely and eventually joined Forum for Democracy. Around the 2022 municipal elections, I already followed the local campaign with great interest."
+          },
+          {
+            "nl": "Begin 2025 werd ik achttien jaar. Aan het einde van dat jaar nam ik contact op met de Urker afdeling van Forum voor Democratie, omdat ik zelf actief wilde worden binnen de partij. Niet veel later werd ik kandidaat voor de gemeenteraadsverkiezingen van 2026. Tijdens die verkiezingen behaalden we één zetel in de gemeenteraad van Urk. Daarna werd ik voorgedragen als commissielid en kreeg ik een plek in de commissie Wonen, Werken en Veiligheid. Daar zet ik nu mijn eerste stappen in de lokale politiek.",
+            "en": "I turned eighteen at the beginning of 2025. At the end of that year, I contacted the Urk branch of Forum for Democracy because I wanted to become active in the party. Not long afterwards, I became a candidate in the 2026 municipal elections. We won one seat on the Urk municipal council. I was then nominated as a committee member and joined the Housing, Work and Safety committee, where I am now taking my first steps in local politics."
+          }
+        ],
+        "vision": {
+          "title": { "nl": "Visie", "en": "Vision" },
+          "text": { "nl": "Binnenkort meer hier", "en": "More coming soon" }
+        }
+      },
+      {
+        "id": "free-time",
+        "title": { "nl": "Vrije tijd", "en": "Free time" },
+        "paragraphs": [
+          {
+            "nl": "Naast mijn opleiding en de politiek vind ik het belangrijk om ook tijd voor mezelf te hebben. Ik houd van rust en vind het prettig om af en toe even los te zijn van de drukte. Een wandeling maken, muziek luisteren of gewoon een goede serie kijken helpt mij om mijn hoofd leeg te maken.",
+            "en": "Alongside my education and politics, I find it important to have time for myself. I enjoy peace and quiet and like being able to step away from the busyness now and then. Going for a walk, listening to music or simply watching a good series helps me clear my head."
+          },
+          {
+            "nl": "Ik reis graag en vind het leuk om nieuwe steden en plekken te ontdekken. Vooral de geschiedenis, architectuur en sfeer van een stad spreken mij aan. Daarnaast luister ik veel naar muziek uit de jaren '80, met name pop, new wave en vergelijkbare stijlen. Ook speel ik regelmatig graag een goede game.",
+            "en": "I enjoy travelling and discovering new cities and places. I am especially drawn to a city's history, architecture and atmosphere. I also listen to a lot of music from the 1980s, particularly pop, new wave and similar styles. I regularly enjoy playing a good game as well."
+          },
+          {
+            "nl": "De afgelopen jaren lag mijn focus vooral op politiek, nieuws en maatschappelijke ontwikkelingen. Daar heb ik absoluut geen spijt van, maar ik ben ook tot het besef gekomen dat er naast politiek meer is in het leven. Daarom probeer ik tegenwoordig bewust een betere balans te vinden tussen mijn politieke werk en mijn privéleven. Politiek blijft een belangrijk en leuk onderdeel van mijn leven, maar ik vind het net zo belangrijk om tijd te maken voor ontspanning en de dingen die ik gewoon leuk vind. Die balans past goed bij mij.",
+            "en": "In recent years, my focus was mainly on politics, news and social developments. I do not regret that at all, but I have also realised that there is more to life than politics. These days, I consciously try to find a better balance between my political work and private life. Politics remains an important and enjoyable part of my life, but I find it just as important to make time for relaxation and the things I simply enjoy. That balance suits me well."
+          }
+        ]
+      }
     ]
   }
 }
