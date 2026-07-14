@@ -1,22 +1,3 @@
-:global(.home.about-page) {
-  height: auto;
-  max-height: none;
-  min-height: 100dvh;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-:global(.home.about-page .home-stage--content) {
-  min-height: calc(100dvh - var(--header-h));
-  overflow: visible;
-}
-
-:global(.home.about-page .page-shell.content-page) {
-  flex: none;
-  min-height: auto;
-  overflow: visible;
-}
-
 .introLayout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 112px;
