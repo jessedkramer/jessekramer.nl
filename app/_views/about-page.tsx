@@ -27,7 +27,7 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
   const content = getAboutPageContent(locale);
 
   return (
-    <div className="home about-page">
+    <div className={`home about-page ${styles.page}`}>
       <WorldBackground />
       <SiteHeader activeNav="about" />
       <div className="home-stage home-stage--content">
@@ -46,7 +46,7 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
 
               <Image
                 className={styles.portrait}
-                src="/images/jesse-kramer-about.png"
+                src="/images/jesse-kramer-about.jpg"
                 alt={locale === "nl" ? "Portret van Jesse Kramer" : "Portrait of Jesse Kramer"}
                 width={266}
                 height={268}
