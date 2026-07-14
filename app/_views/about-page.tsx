@@ -34,9 +34,34 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
           <article className="card journal-article about-article">
             <p className="content-eyebrow">{content.eyebrow}</p>
             <h1>{content.title}</h1>
-            <div className="journal-content">
+
+            <div className="journal-content about-intro">
               {content.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+
+            <div className="about-sections">
+              {content.sections.map((section) => (
+                <details className="about-section" key={section.id}>
+                  <summary>
+                    <span>{section.title}</span>
+                    <span className="about-section__icon" aria-hidden="true">+</span>
+                  </summary>
+
+                  <div className="about-section__content journal-content">
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+
+                    {section.vision ? (
+                      <div className="about-vision-note">
+                        <h2>{section.vision.title}</h2>
+                        <p><em>{section.vision.text}</em></p>
+                      </div>
+                    ) : null}
+                  </div>
+                </details>
               ))}
             </div>
           </article>
