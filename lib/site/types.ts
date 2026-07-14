@@ -119,6 +119,7 @@ export type AboutWidgetContent = {
   page: {
     eyebrow: LocalizedString;
     title: LocalizedString;
+    introTitle: LocalizedString;
     paragraphs: LocalizedString[];
     sections: Array<{
       id: string;
