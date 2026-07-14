@@ -115,6 +115,17 @@ export function getAboutPageContent(locale: AppLocale) {
     eyebrow: pickLocalized(about.page.eyebrow, locale),
     title: pickLocalized(about.page.title, locale),
     paragraphs: pickLocalizedList(about.page.paragraphs, locale),
+    sections: about.page.sections.map((section) => ({
+      id: section.id,
+      title: pickLocalized(section.title, locale),
+      paragraphs: pickLocalizedList(section.paragraphs, locale),
+      vision: section.vision
+        ? {
+            title: pickLocalized(section.vision.title, locale),
+            text: pickLocalized(section.vision.text, locale),
+          }
+        : undefined,
+    })),
   };
 }
 
