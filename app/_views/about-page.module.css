@@ -39,6 +39,25 @@
   border-radius: 12px;
   background: linear-gradient(165deg, rgba(10, 14, 34, .62), rgba(8, 12, 28, .48));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+  interpolate-size: allow-keywords;
+}
+
+.section::details-content {
+  block-size: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition:
+    block-size 360ms cubic-bezier(.22, 1, .36, 1),
+    content-visibility 360ms allow-discrete,
+    opacity 220ms ease,
+    transform 300ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.section[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section summary {
@@ -52,16 +71,26 @@
   color: #fff;
   font-size: .92rem;
   font-weight: 600;
-  transition: background 240ms ease, color 240ms ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: background 240ms ease, color 240ms ease, box-shadow 240ms ease;
 }
 
 .section summary::-webkit-details-marker {
   display: none;
 }
 
-.section summary:hover,
+.section summary:hover {
+  background: rgba(0, 229, 255, .045);
+}
+
+.section summary:focus {
+  outline: none;
+}
+
 .section summary:focus-visible {
   background: rgba(0, 229, 255, .045);
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, .16);
 }
 
 .icon {
@@ -76,7 +105,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1;
-  transition: transform 240ms ease, border-color 240ms ease, background 240ms ease;
+  transition: transform 320ms cubic-bezier(.22, 1, .36, 1), border-color 240ms ease, background 240ms ease;
 }
 
 .section[open] .icon {
@@ -108,6 +137,14 @@
 .vision p {
   margin: 0;
   color: var(--faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section::details-content,
+  .section summary,
+  .icon {
+    transition-duration: 0.01ms;
+  }
 }
 
 @media (max-width: 640px) {
