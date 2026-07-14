@@ -7,6 +7,7 @@ import WorldBackground from "@/components/WorldBackground";
 import type { AppLocale } from "@/i18n/config";
 import { getAboutPageContent, getBrandingForLocale } from "@/lib/site";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import styles from "./about-page.module.css";
 
 export async function aboutMetadata(locale: AppLocale): Promise<Metadata> {
   const branding = getBrandingForLocale(locale);
@@ -35,27 +36,27 @@ export async function AboutPage({ locale }: { locale: AppLocale }) {
             <p className="content-eyebrow">{content.eyebrow}</p>
             <h1>{content.title}</h1>
 
-            <div className="journal-content about-intro">
+            <div className={`journal-content ${styles.intro}`}>
               {content.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
 
-            <div className="about-sections">
+            <div className={styles.sections}>
               {content.sections.map((section) => (
-                <details className="about-section" key={section.id}>
+                <details className={styles.section} key={section.id}>
                   <summary>
                     <span>{section.title}</span>
-                    <span className="about-section__icon" aria-hidden="true">+</span>
+                    <span className={styles.icon} aria-hidden="true">+</span>
                   </summary>
 
-                  <div className="about-section__content journal-content">
+                  <div className={`journal-content ${styles.content}`}>
                     {section.paragraphs.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
 
                     {section.vision ? (
-                      <div className="about-vision-note">
+                      <div className={styles.vision}>
                         <h2>{section.vision.title}</h2>
                         <p><em>{section.vision.text}</em></p>
                       </div>
