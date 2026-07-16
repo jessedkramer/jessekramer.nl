@@ -24,10 +24,10 @@
     {
       "id": "project",
       "type": "link",
-      "icon": "📺",
+      "icon": "🚗",
       "label": {"nl": "Huidige bezigheid","en": "Current focus"},
-      "value": {"nl": "TV kijken","en": "Watching TV"},
-      "href": "https://nl.wikipedia.org/wiki/Televisie",
+      "value": {"nl": "Leren voor mijn theorie-examen","en": "Studying for my driving theory test"},
+      "href": "https://nl.wikipedia.org/wiki/Rijbewijs",
       "external": true
     }
   ]
