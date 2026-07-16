@@ -8,9 +8,7 @@ excerptEn: Welcome to my personal website and read how jessekramer.nl was create
 published: true
 ---
 
-Welkom op **jessekramer.nl**.
-
-Leuk dat je een kijkje neemt.
+Leuk dat je een kijkje neemt op mijn persoonlijke website.
 
 Deze website is mijn eigen plek op het internet. Op de [Over mij](/about)-pagina vertel ik wie ik ben en waar ik mee bezig ben. Daarnaast vind je hier mijn [Journal](/journal), waarin ik ontwikkelingen, ervaringen en andere onderwerpen deel die mij bezighouden.
 
@@ -40,9 +38,7 @@ Veel leesplezier!
 
 ---en---
 
-Welcome to **jessekramer.nl**.
-
-Thanks for taking a look around.
+Thanks for taking a look at my personal website.
 
 This website is my own place on the internet. On the [About](/en/about) page, I explain who I am and what I am currently doing. You can also find my [Journal](/en/journal), where I share developments, experiences and other topics that matter to me.
 
